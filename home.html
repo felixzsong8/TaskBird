@@ -36,6 +36,11 @@
             border: none;
             outline: none;
         }
+        .date {
+            position: absolute;
+            left: 200px;
+            font-size: 25px;
+        }
         .nav {
             position: absolute;
             top: 80px;
@@ -72,6 +77,45 @@
             background-color: white;
             text-align: center;
         }
+        .weather {
+            background-color: skyblue;
+            position: absolute;
+            left: 50px;
+            top: 150px;
+            width: 300px;
+            height: 300px;
+            text-align: left;
+            
+        }
+
+        .today {
+            border: 2px solid;
+            border-color: black;
+            position: absolute;
+            left: 400px;
+            width: 450px;
+            height: 550px;
+            text-align: left;
+        }
+        .stg {
+            border: 2px solid;
+            border-color: black;
+            position: absolute;
+            left: 900px;
+            width: 300px;
+            height: 250px;
+            text-align: left;
+        }
+        .ltg {
+            border: 2px solid;
+            border-color: black;
+            position: absolute;
+            left: 900px;
+            top: 350px;
+            width: 300px;
+            height: 250px;
+            text-align: left;
+        }
 
 
     </style>
@@ -79,6 +123,7 @@
 <body>
     <div class="header">
         <a class="logo" href="home.html"><img style="width:100px; height: 100%; margin-left: 5px;"  src="TaskBird.png" id="logo" ></img></a>
+        <div class ="date" id="date"></div>
         <div class="mode">
             <button type="button">Light Mode</button>
         </div>
@@ -94,9 +139,27 @@
     </div>
     <div class="main">
         <h1>Home</h1>
+        <div class="weather">
+            weather
+        </div>
+        <div id="today" class="today">
+            today scheudle
+        </div>
+        <div class="stg">
+            Short Term Goals
+        </div>
+        <div class="ltg">
+            Long term goals
+        </div>
     </div>
     <script>
-        
+        //Script to work for the weather
+        var currentDate = new Date();
+        dateContainer = document.getElementById("date");
+        days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+        day = days[currentDate.getDay()];
+        dateContainer.innerHTML = day + ", " + currentDate.getMonth() + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
+
     </script>
 </body>
 </html>
