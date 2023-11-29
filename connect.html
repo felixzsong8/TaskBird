@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TaskBird</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Added a default font */
+            font-variant: small-caps;
+        }
+
+        .header {
+            position: relative;
+            width: 100%;
+            height: 80px;
+            background-color:#DCD0FF ; /*DCD0FF */
+            display: flex; /* Added to align items vertically */
+            justify-content: space-between; /* Added to create space between logo and mode */
+            align-items: center; /* Center items vertically */
+        }
+
+        .mode {
+            margin-right: 100px;
+
+        }
+
+        .mode button:hover {
+            background-color:#ffc800;
+            color: white;
+        }
+ 
+        .mode button {
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+        .date {
+            position: absolute;
+            left: 200px;
+            font-size: 25px;
+        }
+        .nav {
+            position: absolute;
+            top: 80px;
+            left: 0;
+            height: 90%;
+            width: 200px;
+            background-color: rgb(194, 194, 194);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+
+        }
+        .nav a {
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: white;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .pages {
+            border-color: black;
+        }
+
+        .main {
+            margin-left: 200px; /* Adjusted the margin to accommodate the width of the nav bar */
+            margin-right: 0; /* Removed right margin */
+            width: calc(100% - 200px); /* Adjusted the width to fill the remaining space */
+            height: calc(100% - 80px);
+            background-color: white;
+            text-align: center;
+            color: black;
+        }
+
+        .main h1 {
+            margin: 0;
+            padding-top: 20px;
+            padding-bottom: 50px;
+        }
+        .weather {
+            background-color: skyblue;
+            position: absolute;
+            left: 50px;
+            top: 150px;
+            width: 300px;
+            height: 300px;
+            text-align: left;
+            
+        }
+
+        .today {
+            border: 2px solid;
+            border-color: black;
+            position: absolute;
+            left: 400px;
+            width: 450px;
+            height: 550px;
+            text-align: left;
+        }
+        .stg {
+            border: 2px solid;
+            border-color: black;
+            position: absolute;
+            left: 900px;
+            width: 300px;
+            height: 250px;
+            text-align: left;
+        }
+        .ltg {
+            border: 2px solid;
+            border-color: black;
+            position: absolute;
+            left: 900px;
+            top: 400px;
+            width: 300px;
+            height: 250px;
+            text-align: left;
+        }
+
+                
+        .profile {
+            float: left;
+            width: 30%; /* Adjusted the width to fit three profiles per row */
+            height:200px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            margin: 10px; /* Added margin to create space between profiles */
+            background-color: #ff990062;
+        }
+
+        .profile img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .profile-container {
+            margin-top: -3%;
+            margin-left: 1.5%;
+        }
+
+        /* Add styling for the filter bar */
+        .filterBar {
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+            margin-top: -4%;
+            margin-bottom: 30px;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        .filter-input {
+            width: 80%;
+            margin-left: 1.5%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .filter-button {
+            padding: 10px;
+            margin-left: 2%;
+            background-color:#4CAF50;
+            color:white;
+            font-weight: bolder;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: larger;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .filter-button:hover {
+            background-color: #409044;
+        }
+
+        #noProfilesMessage {
+            display: none; 
+            color:#d1a400; 
+            margin-top: 10px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a class="logo" href="home.html"><img style="width:100px; height: 100%; margin-left: 5px;"  src="TaskBird.png" id="logo" ></img></a>
+        <div class ="date" id="date"></div>
+        <div class="mode">
+            <button type="button" id="mode" onclick="changeColor_conn()">Light Mode</button>
+        </div>
+    </div>
+    <div class="nav">
+        <div class="pages">
+            <a href="home.html"><strong>Home</strong></a><br>
+            <a href="calendar.html">Calendar</a><br>
+            <a href="checklist.html">CheckList</a><br>
+            <a href="entertainment.html">Entertainment</a><br>
+            <a href="connect.html">Connect</a>
+        </div>
+    </div>
+    <div class="main" id="main">
+        <h1>Connect</h1>
+
+        <!-- Filter Bar -->
+        <div class="filterBar">
+            <input type="text" class="filter-input" id="filterInput" placeholder="Search profiles...">
+            <button class="filter-button" onclick="filterProfiles()">Filter</button>
+        </div>
+
+        <div class="profile-container">
+          <!-- Profile 1 -->
+          <div class="profile">
+            <img src="placeholder-image1.jpg" alt="Profile 1">
+            <h3>Profile 1</h3>
+            <p>Some information about Profile 1.</p>
+          </div>
+      
+          <!-- Profile 2 -->
+          <div class="profile">
+            <img src="placeholder-image2.jpg" alt="Profile 2">
+            <h3>Profile 2</h3>
+            <p>Some information about Profile 2.</p>
+          </div>
+      
+          <!-- Profile 3 -->
+          <div class="profile">
+            <img src="placeholder-image3.jpg" alt="Profile 3">
+            <h3>Profile 3</h3>
+            <p>Some information about Profile 3.</p>
+          </div>
+      
+          <!-- Repeat this structure for additional profiles -->
+          <div id="noProfilesMessage">
+            No profiles found. Please try using another keyword.
+        </div>
+          </div>
+    </div>
+    <script>
+        //Script to work for the weather
+        var currentDate = new Date();
+        dateContainer = document.getElementById("date");
+        days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+        day = days[currentDate.getDay()];
+        dateContainer.innerHTML = day + ", " + currentDate.getMonth() + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
+        //Lightmode
+        var colorMode = document.getElementById("mode")
+        var main = document.getElementById("main");
+        var filterBar = document.querySelector('.filterBar');
+        var noResultsMsg = document.getElementById("noProfilesMessage");
+
+        main.style.backgroundColor = "white";
+        colorMode.innerHTML = "Light Mode"
+        function changeColor_conn() {
+            if(main.style.backgroundColor == "white"){
+                main.style.backgroundColor = "black";
+                main.style.color = "white";
+                filterBar.style.backgroundColor = "black";
+                noResultsMsg.style.color = "#ffc800";
+                colorMode.innerHTML = "Dark Mode";
+
+            }else{
+                main.style.backgroundColor = "white";
+                main.style.color = "black"; // Change text color to white
+                filterBar.style.backgroundColor = "#f0f0f0";
+                noResultsMsg.style.color = "#d1a400";
+                colorMode.innerHTML = "Light Mode"
+            }
+        }
+
+        // Add filterProfiles function to handle filtering
+        // todo replace this with sql filter
+        function filterProfiles() {
+        var input = document.getElementById('filterInput').value.toLowerCase();
+        var profiles = document.getElementsByClassName('profile');
+        var noProfilesMessage = document.getElementById('noProfilesMessage');
+
+        var foundProfiles = false; // Variable to track if any profiles are found
+
+        for (var i = 0; i < profiles.length; i++) {
+            var profileText = profiles[i].textContent.toLowerCase();
+            if (profileText.includes(input)) {
+                profiles[i].style.display = '';
+                foundProfiles = true;
+            } else {
+                profiles[i].style.display = 'none';
+            }
+        }
+
+        // Toggle the visibility of the "no profiles found" message based on the results
+        if (foundProfiles) {
+            noProfilesMessage.style.display = 'none';
+        } else {
+            noProfilesMessage.style.display = 'block';
+        }
+    }
+    </script>
+</body>
+</html>
