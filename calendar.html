@@ -98,36 +98,54 @@
     </div>
     <div class="nav">
         <div class="pages">
-            <a href="home.html">Home</a><br>
-            <a href="calendar.html"><strong>Calendar</strong></a><br>
-            <a href="checklist.html">CheckList</a><br>
-            <a href="entertainment.html">Entertainment</a><br>
-            <a href="connect.html">Connect</a><br>
-            <a href="#">Add New Page</a>
+            <a href="home.html" section="pages" class="box">Home</a><br>
+            <a href="calendar.html" section="pages" class="box"><strong>Calendar</strong></a><br>
+            <a href="checklist.html" section="pages" class="box">Checklist</a><br>
+            <a href="entertainment.html" section="pages" class="box">Entertainment</a><br>
+            <a href="connect.html" section="pages" class="box">Connect</a><br>
+            <a href="#" section="pages" class="box">Add New Page</a>
         </div>
     </div>
     <div class="main" id="main">
         <h1>Calendar</h1>
     </div>
     <script>
-        //Script to work for the weather
+        //Script to work for the Date
         var currentDate = new Date();
         dateContainer = document.getElementById("date");
         days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
         day = days[currentDate.getDay()];
-        dateContainer.innerHTML = day + ", " + currentDate.getMonth() + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
+        dateContainer.innerHTML = day + ", " + (currentDate.getMonth()+1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
         //Lightmode
-        var colorMode = document.getElementById("mode")
-        var main = document.getElementById("main")
+        var colorMode = document.getElementById("mode");
+        var main = document.getElementById("main");
+        const boxes = document.querySelectorAll(".box");
         main.style.backgroundColor = "white";
-        colorMode.innerHTML = "Light Mode"
+        colorMode.innerHTML = "Light Mode";
+        
         function changeColor() {
             if(main.style.backgroundColor == "white"){
                 main.style.backgroundColor = "black";
-                colorMode.innerHTML = "Dark Mode"
+                colorMode.innerHTML = "Dark Mode";
+                main.style.color = "white";
+                boxes.forEach(function(box){
+                    const boxSection = box.getAttribute("section");
+                    if(boxSection === "pages"){
+                        box.style.backgroundColor = "black";
+                        box.style.color = "white";
+                    }
+                });
             }else{
                 main.style.backgroundColor = "white";
-                colorMode.innerHTML = "Light Mode"
+                colorMode.innerHTML = "Light Mode";
+                main.style.color = "black";
+                boxes.forEach(function(box){
+                    const boxSection = box.getAttribute("section");
+                    if(boxSection === "pages"){
+                        box.style.backgroundColor = "white";
+                        box.style.color = "black";
+                    }
+                });
             }
         }
     </script>
