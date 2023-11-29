@@ -214,11 +214,12 @@
     </div>
     <div class="nav">
         <div class="pages">
-            <a href="home.html"><strong>Home</strong></a><br>
-            <a href="calendar.html">Calendar</a><br>
-            <a href="checklist.html">CheckList</a><br>
-            <a href="entertainment.html">Entertainment</a><br>
-            <a href="connect.html">Connect</a>
+            <a href="home.html" section="pages" class="box">Home</a><br>
+            <a href="calendar.html" section="pages" class="box">Calendar</a><br>
+            <a href="checklist.html" section="pages" class="box">CheckList</a><br>
+            <a href="entertainment.html" section="pages" class="box">Entertainment</a><br>
+            <a href="connect.html" section="pages" class="box"><strong>Connect</strong></a><br>
+            <a href="#" section="pages" class="box">Add New Page</a>
         </div>
     </div>
     <div class="main" id="main">
@@ -270,7 +271,7 @@
         var main = document.getElementById("main");
         var filterBar = document.querySelector('.filterBar');
         var noResultsMsg = document.getElementById("noProfilesMessage");
-
+        const boxes = document.querySelectorAll(".box");
         main.style.backgroundColor = "white";
         colorMode.innerHTML = "Light Mode"
         function changeColor_conn() {
@@ -280,13 +281,26 @@
                 filterBar.style.backgroundColor = "black";
                 noResultsMsg.style.color = "#ffc800";
                 colorMode.innerHTML = "Dark Mode";
-
+                boxes.forEach(function(box){
+                    const boxSection = box.getAttribute("section");
+                    if(boxSection === "pages"){
+                        box.style.backgroundColor = "black";
+                        box.style.color = "white";
+                    }
+                });
             }else{
                 main.style.backgroundColor = "white";
                 main.style.color = "black"; // Change text color to white
                 filterBar.style.backgroundColor = "#f0f0f0";
                 noResultsMsg.style.color = "#d1a400";
                 colorMode.innerHTML = "Light Mode"
+                boxes.forEach(function(box){
+                    const boxSection = box.getAttribute("section");
+                    if(boxSection === "pages"){
+                        box.style.backgroundColor = "white";
+                        box.style.color = "black";
+                    }
+                });
             }
         }
 
