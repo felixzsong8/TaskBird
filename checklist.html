@@ -201,40 +201,38 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   addTask.addEventListener('click', () => {
-    const taskName = document.getElementById('taskName').value;
-    const duration = document.getElementById('duration').value;
-    const urgencyButtons = document.querySelectorAll('.urgencyBtn');
+    const taskName = taskNameInput.value;
+    const duration = durationInput.value;
     let urgency = 1;
 
     urgencyButtons.forEach((btn) => {
-        if (btn.classList.contains('selected')) {
-            urgency = parseInt(btn.querySelector('span').getAttribute('data-urgency'));
-        }
+      if (btn.classList.contains('selected')) {
+        urgency = parseInt(btn.getAttribute('data-urgency'));
+      }
     });
 
     const newTask = document.createElement('li');
     newTask.innerHTML = `<strong>${taskName}</strong> - Duration: ${duration} min, Urgency: ${urgency}`;
     
-    // Find the appropriate position to insert the new task
     let insertBeforeNode = null;
     const existingTasks = taskList.getElementsByTagName('li');
     for (let i = 0; i < existingTasks.length; i++) {
-        const existingUrgency = parseInt(existingTasks[i].querySelector('span').getAttribute('data-urgency'));
-        if (urgency > existingUrgency) {
-            insertBeforeNode = existingTasks[i];
-            break;
-        }
+      const existingUrgency = parseInt(existingTasks[i].querySelector('.urgencyBtn').getAttribute('data-urgency'));
+      if (urgency > existingUrgency) {
+        insertBeforeNode = existingTasks[i];
+        break;
+      }
     }
 
     if (insertBeforeNode) {
-        taskList.insertBefore(newTask, insertBeforeNode);
+      taskList.insertBefore(newTask, insertBeforeNode);
     } else {
-        taskList.appendChild(newTask);
+      taskList.appendChild(newTask);
     }
 
     taskModal.style.display = 'none';
     resetModal();
-});
+  });
 
   urgencyButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -253,7 +251,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-
 
     </script>
 
