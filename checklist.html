@@ -163,11 +163,12 @@
             <input type="number" id="duration" required>
             <label>Urgency:</label>
             <div id="urgencyButtons">
-                <button class="urgencyBtn" data-urgency="1">Not Urgent</button>
-                <button class="urgencyBtn" data-urgency="2">Slightly Urgent</button>
-                <button class="urgencyBtn" data-urgency="3">Moderately Urgent</button>
-                <button class="urgencyBtn" data-urgency="4">Very Urgent</button>
-            </div>
+                <button class="urgencyBtn" data-urgency="1"><span data-urgency="1">Not Urgent</span></button>
+                <button class="urgencyBtn" data-urgency="2"><span data-urgency="2">Slightly Urgent</span></button>
+                <button class="urgencyBtn" data-urgency="3"><span data-urgency="3">Moderately Urgent</span></button>
+                <button class="urgencyBtn" data-urgency="4"><span data-urgency="4">Very Urgent</span></button>
+        </div>
+
             <button id="addTask">Add Task</button>
         </div>
     </div>
@@ -200,38 +201,40 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   addTask.addEventListener('click', () => {
-    const taskName = taskNameInput.value;
-    const duration = durationInput.value;
+    const taskName = document.getElementById('taskName').value;
+    const duration = document.getElementById('duration').value;
+    const urgencyButtons = document.querySelectorAll('.urgencyBtn');
     let urgency = 1;
 
     urgencyButtons.forEach((btn) => {
-      if (btn.classList.contains('selected')) {
-        urgency = parseInt(btn.getAttribute('data-urgency'));
-      }
+        if (btn.classList.contains('selected')) {
+            urgency = parseInt(btn.querySelector('span').getAttribute('data-urgency'));
+        }
     });
 
     const newTask = document.createElement('li');
     newTask.innerHTML = `<strong>${taskName}</strong> - Duration: ${duration} min, Urgency: ${urgency}`;
     
+    // Find the appropriate position to insert the new task
     let insertBeforeNode = null;
     const existingTasks = taskList.getElementsByTagName('li');
     for (let i = 0; i < existingTasks.length; i++) {
-      const existingUrgency = parseInt(existingTasks[i].querySelector('.urgency').getAttribute('data-urgency'));
-      if (urgency > existingUrgency) {
-        insertBeforeNode = existingTasks[i];
-        break;
-      }
+        const existingUrgency = parseInt(existingTasks[i].querySelector('span').getAttribute('data-urgency'));
+        if (urgency > existingUrgency) {
+            insertBeforeNode = existingTasks[i];
+            break;
+        }
     }
 
     if (insertBeforeNode) {
-      taskList.insertBefore(newTask, insertBeforeNode);
+        taskList.insertBefore(newTask, insertBeforeNode);
     } else {
-      taskList.appendChild(newTask);
+        taskList.appendChild(newTask);
     }
 
     taskModal.style.display = 'none';
     resetModal();
-  });
+});
 
   urgencyButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
