@@ -215,16 +215,20 @@ document.addEventListener('DOMContentLoaded', function () {
     let insertIndex = 0;
     const tasks = taskList.children;
 
-    for (let i = 0; i < tasks.length; i++) {
-      const taskUrgency = parseInt(tasks[i].getAttribute('data-urgency'));
-      if (urgency > taskUrgency) {
+    while (insertIndex < tasks.length) {
+      const taskUrgency = parseInt(tasks[insertIndex].getAttribute('data-urgency'));
+      if (urgency < taskUrgency) {
         break;
       }
       insertIndex++;
     }
 
     // Insert the task at the correct position
-    taskList.insertBefore(newTask, tasks[insertIndex] || null);
+    if (insertIndex === tasks.length) {
+      taskList.appendChild(newTask); // Add to the end
+    } else {
+      taskList.insertBefore(newTask, tasks[insertIndex]);
+    }
 
     taskModal.style.display = 'none';
   });
