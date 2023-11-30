@@ -93,7 +93,7 @@
             margin: 5px;
         }
         #taskModal {
-/*           display: none; */
+          display: none;
           position: fixed;
           top: 0;
           left: 0;
@@ -171,6 +171,54 @@
             <button id="addTask">Add Task</button>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addTaskBtn = document.getElementById('addTaskBtn');
+            const taskList = document.getElementById('taskList');
+            const taskModal = document.getElementById('taskModal');
+            const closeBtn = document.querySelector('.close');
+            const addTask = document.getElementById('addTask');
+
+            addTaskBtn.addEventListener('click', () => {
+                taskModal.style.display = 'block';
+            });
+
+            closeBtn.addEventListener('click', () => {
+                if (event.target === taskModal) {
+                    taskModal.style.display = 'none';
+                }
+            });
+
+            addTask.addEventListener('click', () => {
+                const taskName = document.getElementById('taskName').value;
+                const duration = document.getElementById('duration').value;
+                const urgencyButtons = document.querySelectorAll('.urgencyBtn');
+                let urgency = 1;
+
+                urgencyButtons.forEach((btn) => {
+                    if (btn.classList.contains('selected')) {
+                        urgency = parseInt(btn.getAttribute('data-urgency'));
+                    }
+                });
+
+                const newTask = document.createElement('li');
+                newTask.innerHTML = `<strong>${taskName}</strong> - Duration: ${duration} min, Urgency: ${urgency}`;
+                taskList.prepend(newTask);
+
+                taskModal.style.display = 'none';
+            });
+
+            const urgencyButtons = document.querySelectorAll('.urgencyBtn');
+
+            urgencyButtons.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    otherBtn.classList.remove('selected');
+                });
+            });
+        });
+
+    </script>
 
 
                 
