@@ -213,22 +213,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const newTask = document.createElement('li');
     newTask.innerHTML = `<strong>${taskName}</strong> - Duration: ${duration} min, Urgency: ${urgency}`;
-    
-    let insertBeforeNode = null;
-    const existingTasks = taskList.getElementsByTagName('li');
-    for (let i = 0; i < existingTasks.length; i++) {
-      const existingUrgency = parseInt(existingTasks[i].querySelector('.urgencyBtn').getAttribute('data-urgency'));
-      if (urgency > existingUrgency) {
-        insertBeforeNode = existingTasks[i];
-        break;
-      }
-    }
+    newTask.dataset.urgency = urgency; // Set the dataset for sorting
 
-    if (insertBeforeNode) {
-      taskList.insertBefore(newTask, insertBeforeNode);
-    } else {
-      taskList.appendChild(newTask);
-    }
+    // Insert new task at the correct position
+    const existingTasks = Array.from(taskList.getElementsByTagName('li'));
+    const insertIndex = findInsertIndex(existingTasks, urgency);
+    taskList.insertBefore(newTask, existingTasks[insertIndex]);
 
     taskModal.style.display = 'none';
     resetModal();
@@ -250,7 +240,22 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.classList.remove('selected');
     });
   }
+
+  function findInsertIndex(existingTasks, newUrgency) {
+    let insertIndex = 0;
+
+    for (let i = existingTasks.length - 1; i >= 0; i--) {
+      const existingUrgency = parseInt(existingTasks[i].dataset.urgency);
+      if (newUrgency <= existingUrgency) {
+        insertIndex = i + 1;
+        break;
+      }
+    }
+
+    return insertIndex;
+  }
 });
+
 
     </script>
 
