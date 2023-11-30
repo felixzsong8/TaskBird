@@ -82,17 +82,91 @@
             padding-top: 20px;
             padding-bottom: 50px;
         }
+        /*Start of the weather section */
         .weather {
-            background-color: skyblue;
+            background: linear-gradient(135deg, #00feba, #5b548a);
             position: absolute;
-            left: 50px;
+            left: 30px;
             top: 150px;
             width: 300px;
-            height: 300px;
-            text-align: left;
-            
+            height: 400px;
+            margin: 20px auto 0;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
         }
-
+        .search {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .search input {
+            border: 0;
+            outline: 0;
+            background:rgb(194, 194, 194);
+            color: #555;
+            padding: 10px 25px;
+            border-radius: 30px;
+            flex: 1;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .search button {
+            border: 0;
+            outline: 0;
+            background: #ebfffc;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+        }
+        .search button img {
+            width: 20px;
+        }
+        .error {
+            text-align: left;
+            margin-left: 10px;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+        .display {
+            line-height: 0px;
+            display: none;
+        }
+        .display h1 {
+            font-size: 40px;
+            padding: 10px;
+        }
+        .display h2 {
+            font-size: 20px;
+        }
+        .weatherIcon {
+            width: 140px;
+            margin-top: 10px;
+        }
+        .details {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            margin-top: 50px;
+        }
+        .col {
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+        .col img {
+            width: 40px;
+            margin-right: 10px;
+        }
+        .humidity, .wind {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        /*End of the weather section */
         .today {
             border: 2px solid;
             border-color: black;
@@ -145,16 +219,43 @@
     </div>
     <div class="main" id="main">
         <h1>Home</h1>
-        <div class="weather">
-            weather
+        <div class="weather" id="weather">
+           <div class="search">
+                <input type="text" placeholder="Enter city name" spellcheck="false">
+                <button><img src="images/search.png"></button>
+           </div>
+           <div class="error">
+                <p>Invalid city name, try again</p>
+           </div>
+           <div class="display">
+                <img src="images/rain.png" class="weatherIcon">
+                <h1 class="temp">22°c</h1>
+                <h2 class="city">New York</h2>
+                <div class="details">
+                    <div class="col">
+                        <img src="images/humidity.png">
+                        <div>
+                            <p class="humidity">50%</p>
+                            <p>Humitidy</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <img src="images/wind.png">
+                        <div>
+                            <p class="wind">15 km/h</p>
+                            <p>Wind Speed</p>
+                        </div>
+                    </div>
+                </div>
+           </div>
         </div>
         <div id="today" class="today">
             today scheudle
         </div>
-        <div id="stg" class="stg">
+        <div class="stg" id="stg">
             Short Term Goals
         </div>
-        <div id="ltg" class="ltg">
+        <div class="ltg" id="ltg">
             Long term goals
         </div>
     </div>
@@ -207,6 +308,62 @@
                 });
             }
         }
+        //Weather div
+        const apiKey = "2cc9622df0a80bdc58d8d406b90093bf";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+        const searchBox = document.querySelector(".search input");
+        const searchBtn = document.querySelector(".search button");
+        const weatherIcon = document.querySelector(".weatherIcon")
+
+        async function checkWeather(city){
+            const response = await fetch(apiUrl + city + '&appid=' + apiKey);
+            if(response.status == 404){
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".error").innerHTML = "Invalid city name, try again";
+                document.querySelector(".display").style.display = "none";
+            }else if(response.status == 400){
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".error").innerHTML = "No city name given, try again";
+                document.querySelector(".display").style.display = "none";
+            }else{
+                var data = await response.json();
+                console.log(data);
+                document.querySelector(".city").innerHTML = data.name;
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
+                document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                document.querySelector(".wind").innerHTML = data.wind.speed + " km/h"
+
+                if(data.weather[0].main == "Clouds"){
+                    weatherIcon.src = "images/clouds.png"
+                }
+                if(data.weather[0].main == "Clear"){
+                    weatherIcon.src = "images/clear.png"
+                }
+                if(data.weather[0].main == "Rain"){
+                    weatherIcon.src = "images/rain.png"
+                }
+                if(data.weather[0].main == "Drizzle"){
+                    weatherIcon.src = "images/drizzle.png"
+                }
+                if(data.weather[0].main == "Mist"){
+                    weatherIcon.src = "images/mist.png"
+                }
+                if(data.weather[0].main == "Snow"){
+                    weatherIcon.src = "images/snow.png"
+                }
+
+                document.querySelector(".display").style.display = "block";
+                document.querySelector(".error").style.display = "none";
+            }
+
+            
+        }
+
+        searchBtn.addEventListener("click", ()=>{
+            checkWeather(searchBox.value);
+        });
+        
+
     </script>
 </body>
 </html>
