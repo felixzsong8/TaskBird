@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const newTask = document.createElement('li');
-    newTask.innerHTML = `<strong>${taskName}</strong> - Duration: ${duration} min, Urgency: ${urgency}`;
+newTask.innerHTML = `• <strong>${taskName}</strong> - Duration: ${duration} min, Urgency: ${urgency}`;
     newTask.setAttribute('data-urgency', urgency);
 
     // Find the appropriate position to insert the task based on urgency
