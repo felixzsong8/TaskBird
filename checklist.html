@@ -217,20 +217,16 @@ document.addEventListener('DOMContentLoaded', function () {
     let insertIndex = 0;
     const tasks = taskList.children;
 
-    while (insertIndex < tasks.length) {
-      const taskUrgency = parseInt(tasks[insertIndex].getAttribute('data-urgency'));
-      if (urgency < taskUrgency) {
+    for (let i = 0; i < tasks.length; i++) {
+      const taskUrgency = parseInt(tasks[i].getAttribute('data-urgency'));
+      if (urgency > taskUrgency) {
         break;
       }
       insertIndex++;
     }
 
     // Insert the task at the correct position
-    if (insertIndex === tasks.length) {
-      taskList.appendChild(newTask); // Add to the end
-    } else {
-      taskList.insertBefore(newTask, tasks[insertIndex]);
-    }
+    taskList.insertBefore(newTask, tasks[insertIndex] || null);
 
     taskModal.style.display = 'none';
   });
@@ -246,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
 
     </script>
 
