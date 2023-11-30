@@ -180,9 +180,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const taskModal = document.getElementById('taskModal');
   const closeBtn = document.querySelector('.close');
   const addTask = document.getElementById('addTask');
-  const taskNameInput = document.getElementById('taskName');
-  const durationInput = document.getElementById('duration');
-  const urgencyButtons = document.querySelectorAll('.urgencyBtn');
 
   addTaskBtn.addEventListener('click', () => {
     taskModal.style.display = 'block';
@@ -190,19 +187,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   closeBtn.addEventListener('click', () => {
     taskModal.style.display = 'none';
-    resetModal();
   });
 
   window.addEventListener('click', (event) => {
     if (event.target === taskModal) {
       taskModal.style.display = 'none';
-      resetModal();
     }
   });
 
   addTask.addEventListener('click', () => {
-    const taskName = taskNameInput.value;
-    const duration = durationInput.value;
+    const taskName = document.getElementById('taskName').value;
+    const duration = document.getElementById('duration').value;
+    const urgencyButtons = document.querySelectorAll('.urgencyBtn');
     let urgency = 1;
 
     urgencyButtons.forEach((btn) => {
@@ -213,16 +209,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const newTask = document.createElement('li');
     newTask.innerHTML = `<strong>${taskName}</strong> - Duration: ${duration} min, Urgency: ${urgency}`;
-    newTask.dataset.urgency = urgency; // Set the dataset for sorting
-
-    // Insert new task at the correct position
-    const existingTasks = Array.from(taskList.getElementsByTagName('li'));
-    const insertIndex = findInsertIndex(existingTasks, urgency);
-    taskList.insertBefore(newTask, existingTasks[insertIndex]);
+    taskList.prepend(newTask);
 
     taskModal.style.display = 'none';
-    resetModal();
   });
+
+  const urgencyButtons = document.querySelectorAll('.urgencyBtn');
 
   urgencyButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -232,30 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.classList.add('selected');
     });
   });
-
-  function resetModal() {
-    taskNameInput.value = '';
-    durationInput.value = '';
-    urgencyButtons.forEach((btn) => {
-      btn.classList.remove('selected');
-    });
-  }
-
-  function findInsertIndex(existingTasks, newUrgency) {
-    let insertIndex = 0;
-
-    for (let i = existingTasks.length - 1; i >= 0; i--) {
-      const existingUrgency = parseInt(existingTasks[i].dataset.urgency);
-      if (newUrgency <= existingUrgency) {
-        insertIndex = i + 1;
-        break;
-      }
-    }
-
-    return insertIndex;
-  }
 });
-
 
     </script>
 
