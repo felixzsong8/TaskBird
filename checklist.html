@@ -202,17 +202,26 @@ document.addEventListener('DOMContentLoaded', function () {
     let urgency = 1;
 
     urgencyButtons.forEach((btn) => {
-      if (btn.classList.contains('selected')) {
-        urgency = parseInt(btn.getAttribute('data-urgency'));
-      }
+        if (btn.classList.contains('selected')) {
+            urgency = parseInt(btn.getAttribute('data-urgency'));
+        }
     });
 
     const newTask = document.createElement('li');
     newTask.innerHTML = `<strong>${taskName}</strong> - Duration: ${duration} min, Urgency: ${urgency}`;
-    taskList.prepend(newTask);
+
+    // Create a new list item with a nested unordered list for tasks
+    const taskItem = document.createElement('li');
+    const taskList = document.createElement('ul');
+    taskList.appendChild(newTask);
+    taskItem.appendChild(taskList);
+
+    // Append the new task item to the existing task list
+    taskList.appendChild(taskItem);
 
     taskModal.style.display = 'none';
-  });
+});
+
 
   const urgencyButtons = document.querySelectorAll('.urgencyBtn');
 
