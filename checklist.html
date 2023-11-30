@@ -173,7 +173,7 @@
     </div>
 
     <script>
-       document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
   const addTaskBtn = document.getElementById('addTaskBtn');
   const taskList = document.getElementById('taskList');
   const taskModal = document.getElementById('taskModal');
@@ -186,11 +186,13 @@
 
   closeBtn.addEventListener('click', () => {
     taskModal.style.display = 'none';
+    resetModal();
   });
 
   window.addEventListener('click', (event) => {
     if (event.target === taskModal) {
       taskModal.style.display = 'none';
+      resetModal();
     }
   });
 
@@ -227,6 +229,7 @@
     }
 
     taskModal.style.display = 'none';
+    resetModal();
   });
 
   const urgencyButtons = document.querySelectorAll('.urgencyBtn');
@@ -239,7 +242,16 @@
       btn.classList.add('selected');
     });
   });
+
+  function resetModal() {
+    document.getElementById('taskName').value = '';
+    document.getElementById('duration').value = '';
+    urgencyButtons.forEach((btn) => {
+      btn.classList.remove('selected');
+    });
+  }
 });
+
 
     </script>
 
