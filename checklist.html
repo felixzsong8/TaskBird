@@ -97,6 +97,7 @@
             padding: 10px;
             margin: 5px;
         }
+        
         #taskModal {
           display: none;
           position: fixed;
@@ -108,12 +109,37 @@
         }
 
         .modal-content {
-          background-color: #fefefe;
-          margin: 15% auto;
-          padding: 20px;
-          border: 1px solid #888;
-          max-width: 400px;
-        }
+              background-color: #fefefe;
+              margin: 15% auto;
+              padding: 20px;
+              border: 1px solid #888;
+              max-width: 400px;
+              text-align: center;
+            }
+            
+            .task-section {
+              margin-bottom: 10px;
+            }
+            
+            #urgencyButtons {
+              display: flex;
+              justify-content: space-between;
+              margin-top: 10px;
+            }
+            
+            .urgencyBtn {
+              padding: 8px;
+              margin: 0;
+              border: none;
+              outline: none;
+              cursor: pointer;
+            }
+            
+            /* Add styling for the selected button */
+            .urgencyBtn.selected {
+              border: 2px solid black;
+            }
+
         
         .close {
           color: #aaa;
@@ -165,24 +191,30 @@
         <ul id="taskList"></ul>
     </div>
 
-    <div id="taskModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <label for="taskName">Task Name: </label>
-            <input type="text" id="taskName" required>
-            <label for="duration">Estimated Duration (in minutes): </label>
-            <input type="number" id="duration" required>
-            <label>Urgency:</label>
-            <div id="urgencyButtons">
-                <button class="urgencyBtn" data-urgency="1"><span data-urgency="1">Not Urgent</span></button>
-                <button class="urgencyBtn" data-urgency="2"><span data-urgency="2">Slightly Urgent</span></button>
-                <button class="urgencyBtn" data-urgency="3"><span data-urgency="3">Moderately Urgent</span></button>
-                <button class="urgencyBtn" data-urgency="4"><span data-urgency="4">Very Urgent</span></button>
-        </div>
-
-            <button id="addTask">Add Task</button>
-        </div>
+   <div id="taskModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="task-section">
+      <label for="taskName">Task Name:</label>
+      <input type="text" id="taskName" required>
     </div>
+    <div class="task-section">
+      <label for="duration">Estimated Duration (in minutes):</label>
+      <input type="number" id="duration" required>
+    </div>
+    <div class="task-section">
+      <label>Urgency:</label>
+      <div id="urgencyButtons">
+        <button class="urgencyBtn" data-urgency="1" style="background-color: blue;"><span data-urgency="1">Not Urgent</span></button>
+        <button class="urgencyBtn" data-urgency="2" style="background-color: green;"><span data-urgency="2">Slightly Urgent</span></button>
+        <button class="urgencyBtn" data-urgency="3" style="background-color: yellow;"><span data-urgency="3">Moderately Urgent</span></button>
+        <button class="urgencyBtn" data-urgency="4" style="background-color: red;"><span data-urgency="4">Very Urgent</span></button>
+      </div>
+    </div>
+    <button id="addTask">Submit Task</button>
+  </div>
+</div>
+
 
     <script>
 document.addEventListener('DOMContentLoaded', function () {
