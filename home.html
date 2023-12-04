@@ -10,22 +10,27 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif; /* Added a default font */
-            background-color:#DCD0FF ; /*DCD0FF */
+            background-color: #DCD0FF; /* Set the entire background color */
         }
 
-        .header {
-            position: relative;
-            width: 100%;
-            height: 80px;
-            background-color:#DCD0FF ; /*DCD0FF */
-            display: flex; /* Added to align items vertically */
-            justify-content: space-between; /* Added to create space between logo and mode */
-            align-items: center; /* Center items vertically */
+        .logoBox {
+            height: 30px;
+        }
+
+        .logo {
+            position: absolute;
+            width: 99%;
+            height: 70px;
+            left: 0;
+            top: 0;
+            display: block;
             
         }
+
         .mode {
-            margin-right: 100px;
+            font-size: 20px;
         }
+
         .mode button {
             text-decoration: none;
             color: black;
@@ -37,25 +42,23 @@
             border: none;
             outline: none;
         }
-        .date {
-            position: absolute;
-            left: 200px;
-            font-size: 25px;
-        }
+
         .nav {
             position: absolute;
-            top: 80px;
+            top: 0;
             left: 0;
-            height: 90%;
+            height: 100%;
             width: 200px;
-            background-color: rgb(194, 194, 194);
+            background-color: #DCD0FF;
             display: flex;
             flex-direction: column;
             padding: 20px;
             box-sizing: border-box;
             text-align: center;
-
+            border: 1px solid black;
+            z-index: 0; /* Set a lower z-index to ensure the navigation is behind the logo */
         }
+
         .nav a {
             text-decoration: none;
             color: black;
@@ -66,30 +69,27 @@
             text-align: center;
             line-height: 50px;
         }
-        .pages {
-            border-color: black;
-        }
 
         .main {
-            margin-left: 200px; /* Adjust the margin to accommodate the width of the nav bar */
-            position: relative;
-            width: 86.8%; /* Adjust the width to account for the margin */
-            height: calc(100% - 80px);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
             text-align: center;
-        }
-        .main h1 {
-            margin: 0;
-            padding-top: 20px;
-            padding-bottom: 50px;
-        }
+            background-color: #DCD0FF;
+            overflow: auto; /* Add overflow for content scrolling */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: Add a box shadow for a visual separation */
+        }       
         /*Start of the weather section */
         .weather {
             background: linear-gradient(135deg, #00feba, #5b548a);
             position: absolute;
-            left: 30px;
+            left: 20%;
             top: 150px;
-            width: 300px;
-            height: 400px;
+            width: 200px;
+            height: 300px;
             margin: 20px auto 0;
             padding: 20px;
             border-radius: 20px;
@@ -110,19 +110,19 @@
             border-radius: 30px;
             flex: 1;
             margin-right: 10px;
-            font-size: 14px;
+            font-size: 10px;
         }
         .search button {
             border: 0;
             outline: 0;
             background: #ebfffc;
             border-radius: 50px;
-            width: 60px;
-            height: 60px;
+            width: 40px;
+            height: 40px;
             cursor: pointer;
         }
         .search button img {
-            width: 20px;
+            width: 15px;
         }
         .error {
             text-align: left;
@@ -136,22 +136,23 @@
             display: none;
         }
         .display h1 {
-            font-size: 40px;
+            font-size: 20px;
             padding: 10px;
         }
         .display h2 {
-            font-size: 20px;
+            font-size: 10px;
         }
         .weatherIcon {
-            width: 140px;
+            width: 100px;
             margin-top: 10px;
         }
         .details {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
-            margin-top: 50px;
+            padding: 0 10px;
+            margin-top: 20px;
+            font-size: 10px;
         }
         .col {
             display: flex;
@@ -159,11 +160,11 @@
             text-align: left;
         }
         .col img {
-            width: 40px;
+            width: 30px;
             margin-right: 10px;
         }
         .humidity, .wind {
-            font-size: 20px;
+            font-size: 10px;
             margin-top: 20px;
         }
         /*End of the weather section */
@@ -171,54 +172,61 @@
             border: 2px solid;
             border-color: black;
             position: absolute;
-            left: 400px;
-            width: 450px;
-            height: 550px;
+            left: 45%;
+            top: 10%;
+            width: 250px;
+            height: 450px;
             text-align: left;
+            background-color: white;
         }
+        .date {
+            left: 0px;
+            font-size: 25px;
+         }
         .stg {
             border: 2px solid;
             border-color: black;
             position: absolute;
+            top: 10%;
             left: 900px;
             width: 300px;
             height: 250px;
             text-align: left;
+            background-color: white
         }
         .ltg {
             border: 2px solid;
             border-color: black;
             position: absolute;
             left: 900px;
-            top: 400px;
+            top: 55%;
             width: 300px;
             height: 250px;
             text-align: left;
+            background-color: white
         }
 
 
-    </style>
+    </style> 
 </head>
 <body>
-    <div class="header">
-        <a class="logo" href="home.html"><img style="width:100px; height: 100%; margin-left: 5px;"  src="TaskBird.png" id="logo" ></img></a>
-        <div class ="date" id="date"></div>
-        <div class="mode">
-            <button type="button" id="mode" onclick="changeColor()">Light Mode</button>
-        </div>
-    </div>
-    <div class="nav">
-        <div class="pages">
-            <a href="https://felixzsong8.github.io/TaskBird/home.html" section="pages" class="box"><strong>Home</strong></a><br>
-            <a href="https://felixzsong8.github.io/TaskBird/calendar.html" section="pages" class="box">Calendar</a><br>
-            <a href="https://felixzsong8.github.io/TaskBird/checklist.html" section="pages" class="box">CheckList</a><br>
-            <a href="https://felixzsong8.github.io/TaskBird/entertainment.html" section="pages" class="box">Entertainment</a><br>
-            <a href="https://yvonnel.sgedu.site/final_proj/format_connect.php" section="pages" class="box">Connect</a><br>
-            <a href="#" section="pages" class="box">Add New Page</a>
-        </div>
-    </div>
     <div class="main" id="main">
-        <h1>Home</h1>
+        <div class="nav">
+            <a href="home.html" class="logoBox">
+                <img class="logo" src="title.png" id="logo" ></img>
+            </a>
+            <div class="mode">
+                <button type="button" id="mode" onclick="changeColor()">Light Mode</button>
+            </div>
+            <div class="pages">
+                <a href="https://felixzsong8.github.io/TaskBird/home.html" section="pages" class="box"><strong>Home</strong></a><br>
+                <a href="https://felixzsong8.github.io/TaskBird/calendar.html" section="pages" class="box">Calendar</a><br>
+                <a href="https://felixzsong8.github.io/TaskBird/checklist.html" section="pages" class="box">CheckList</a><br>
+                <a href="https://felixzsong8.github.io/TaskBird/entertainment.html" section="pages" class="box">Entertainment</a><br>
+                <a href="https://yvonnel.sgedu.site/final_proj/format_connect.php" section="pages" class="box">Connect</a><br>
+                <a href="#" section="pages" class="box">Add New Page</a>
+            </div>
+        </div>
         <div class="weather" id="weather">
            <div class="search">
                 <input type="text" placeholder="Enter city name" spellcheck="false">
@@ -243,13 +251,14 @@
                         <img src="images/wind.png">
                         <div>
                             <p class="wind">15 km/h</p>
-                            <p>Wind Speed</p>
+                            <p>Speed</p>
                         </div>
                     </div>
                 </div>
            </div>
         </div>
         <div id="today" class="today">
+            <div class ="date" id="date"></div>
             today scheudle
         </div>
         <div class="stg" id="stg">
@@ -268,6 +277,7 @@
         dateContainer.innerHTML = day + ", " + (currentDate.getMonth()+1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
         //Lightmode
         var colorMode = document.getElementById("mode");
+        var title = document.querySelector(".main h1")
         var main = document.getElementById("main");
         var weatherBox = document.getElementById("weather");
         var todayBox = document.getElementById("today");
@@ -276,15 +286,17 @@
         const boxes = document.querySelectorAll(".box");
         main.style.backgroundColor = "white";
         colorMode.innerHTML = "Light Mode";
-        
+        var status = 0;
+        //<a class="logo" href="home.html"><img src="TaskBird.png" id="logo" ></img></a>
         function changeColor() {
-            if(main.style.backgroundColor == "white"){
-                main.style.backgroundColor = "black";
+            if(status == 0){
                 colorMode.innerHTML = "Dark Mode";
+                colorMode.style.backgroundColor = "black";
+                colorMode.style.color = "white";
                 main.style.color = "white";
-                todayBox.style.borderColor = "white";
-                stgBox.style.borderColor = "white";
-                ltgBox.style.borderColor = "white";
+                todayBox.style.backgroundColor = "#3a3b3b";
+                stgBox.style.backgroundColor = "#3a3b3b";
+                ltgBox.style.backgroundColor = "#3a3b3b";
                 boxes.forEach(function(box){
                     const boxSection = box.getAttribute("section");
                     if(boxSection === "pages"){
@@ -292,13 +304,15 @@
                         box.style.color = "white";
                     }
                 });
+                status = 1
             }else{
-                main.style.backgroundColor = "white";
                 colorMode.innerHTML = "Light Mode";
+                colorMode.style.backgroundColor = "white";
+                colorMode.style.color = "black";
                 main.style.color = "black";
-                todayBox.style.borderColor = "black";
-                stgBox.style.borderColor = "black";
-                ltgBox.style.borderColor = "black";
+                todayBox.style.backgroundColor = "white";
+                stgBox.style.backgroundColor = "white";
+                ltgBox.style.backgroundColor = "white";
                 boxes.forEach(function(box){
                     const boxSection = box.getAttribute("section");
                     if(boxSection === "pages"){
@@ -306,6 +320,7 @@
                         box.style.color = "black";
                     }
                 });
+                status = 0;
             }
         }
         //Weather div
