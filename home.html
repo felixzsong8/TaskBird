@@ -9,12 +9,13 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif; /* Added a default font */
-            background-color: #DCD0FF; /* Set the entire background color */
+            font-family: "Monaco",monospace; /* Added a default font */
+            background-color: white; /* Set the entire background color */
+            display: flex; /* Use flex to align navbar and main */
         }
 
         .logoBox {
-            height: 30px;
+            height: 40px;
         }
 
         .logo {
@@ -24,18 +25,27 @@
             left: 0;
             top: 0;
             display: block;
-            
         }
 
         .mode {
-            font-size: 20px;
+            position: absolute;
+            top: 2%;
+            margin-left: 90%;
+            margin-bottom: -5%;
+            z-index: 3;
+        }
+
+        .mode button:hover {
+            color: white;
+            background-color: #DCD0FF;
         }
 
         .mode button {
+            margin-top: 2%;
             text-decoration: none;
             color: black;
             padding: 10px;
-            background-color: white;
+            background-color: #ffc800;
             border-radius: 5px;
             text-align: center;
             cursor: pointer;
@@ -44,50 +54,43 @@
         }
 
         .nav {
-            position: absolute;
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1; /* Update the z-index */
             top: 0;
             left: 0;
-            height: 100%;
-            width: 200px;
             background-color: #DCD0FF;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-            border: 1px solid black;
-            z-index: 0; /* Set a lower z-index to ensure the navigation is behind the logo */
+            overflow-x: hidden;
+            padding-top: 16px;
+            line-height: 10px;
         }
 
+
         .nav a {
+            padding: 6px 8px 6px 16px;
             text-decoration: none;
-            color: black;
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: white;
-            border-radius: 5px;
-            text-align: center;
-            line-height: 50px;
+            font-size: 15px;
+            color: #000000;
+            display: block;
         }
 
         .main {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            right: 0%;
             width: 90%;
-            height: 90%;
-            text-align: center;
+            height: 100%;
             background-color: #DCD0FF;
             overflow: auto; /* Add overflow for content scrolling */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: Add a box shadow for a visual separation */
-        }       
+        }
+            
         /*Start of the weather section */
         .weather {
-            background: linear-gradient(135deg, #00feba, #5b548a);
+            background-color: #ff990062;
             position: absolute;
-            left: 20%;
-            top: 150px;
+            left: 5%;
+            top: 5%;
             width: 200px;
             height: 300px;
             margin: 20px auto 0;
@@ -168,37 +171,43 @@
             margin-top: 20px;
         }
         /*End of the weather section */
-        .today {
-            border: 2px solid;
-            border-color: black;
+        .motivation {
+            border: 2px solid #ff990062;
             position: absolute;
-            left: 45%;
-            top: 10%;
+            top: 450px;
+            left: 5%;
             width: 250px;
+            height: 200px;
+        }
+        .today {
+            border: 2px solid #ff990062;
+            position: absolute;
+            left: 27.5%;
+            top: 10%;
+            width: 40%;
             height: 450px;
             text-align: left;
             background-color: white;
         }
+        
         .date {
             left: 0px;
             font-size: 25px;
          }
-        .stg {
-            border: 2px solid;
-            border-color: black;
+        .calendar {
+            border: 2px solid #ff990062;
             position: absolute;
             top: 10%;
-            left: 900px;
+            left: 1000px;
             width: 300px;
             height: 250px;
             text-align: left;
             background-color: white
         }
         .ltg {
-            border: 2px solid;
-            border-color: black;
+            border: 2px solid #ff990062;
             position: absolute;
-            left: 900px;
+            left: 1000px;
             top: 55%;
             width: 300px;
             height: 250px;
@@ -210,23 +219,22 @@
     </style> 
 </head>
 <body>
-    <div class="main" id="main">
-        <div class="nav">
-            <a href="home.html" class="logoBox">
-                <img class="logo" src="title.png" id="logo" ></img>
-            </a>
-            <div class="mode">
-                <button type="button" id="mode" onclick="changeColor()">Light Mode</button>
-            </div>
-            <div class="pages">
-                <a href="https://felixzsong8.github.io/TaskBird/home.html" section="pages" class="box"><strong>Home</strong></a><br>
-                <a href="https://felixzsong8.github.io/TaskBird/calendar.html" section="pages" class="box">Calendar</a><br>
-                <a href="https://felixzsong8.github.io/TaskBird/checklist.html" section="pages" class="box">CheckList</a><br>
-                <a href="https://felixzsong8.github.io/TaskBird/entertainment.html" section="pages" class="box">Entertainment</a><br>
-                <a href="https://yvonnel.sgedu.site/final_proj/format_connect.php" section="pages" class="box">Connect</a><br>
-                <a href="#" section="pages" class="box">Add New Page</a>
-            </div>
+    <div class="nav">
+        <a href="home.html" class="logoBox">
+            <img class="logo" src="title.png" id="logo" ></img>
+        </a>
+        <div class="pages">
+            <a href="https://felixzsong8.github.io/TaskBird/home.html" section="pages" class="box"><strong>Home</strong></a><br>
+            <a href="https://felixzsong8.github.io/TaskBird/calendar.html" section="pages" class="box">Calendar</a><br>
+            <a href="https://felixzsong8.github.io/TaskBird/checklist.html" section="pages" class="box">CheckList</a><br>
+            <a href="https://felixzsong8.github.io/TaskBird/entertainment.html" section="pages" class="box">Entertainment</a><br>
+            <a href="https://yvonnel.sgedu.site/final_proj/format_connect.php" section="pages" class="box">Connect</a><br>
         </div>
+    </div>
+    <div class="mode">
+        <button type="button" id="mode" onclick="changeColor()">Light Mode</button>
+    </div>
+    <div class="main" id="main">
         <div class="weather" id="weather">
            <div class="search">
                 <input type="text" placeholder="Enter city name" spellcheck="false">
@@ -257,12 +265,15 @@
                 </div>
            </div>
         </div>
+        <div class="motivation" id="motivation">
+            insert cat picture
+        </div>
         <div id="today" class="today">
             <div class ="date" id="date"></div>
             today scheudle
         </div>
-        <div class="stg" id="stg">
-            Short Term Goals
+        <div class="calendar" id="calendar">
+            Calendar Insert
         </div>
         <div class="ltg" id="ltg">
             Long term goals
@@ -281,8 +292,9 @@
         var main = document.getElementById("main");
         var weatherBox = document.getElementById("weather");
         var todayBox = document.getElementById("today");
-        var stgBox = document.getElementById("stg");
+        var calendar = document.getElementById("calendar");
         var ltgBox = document.getElementById("ltg");
+        var motivation = document.getElementById("motivation");
         const boxes = document.querySelectorAll(".box");
         main.style.backgroundColor = "white";
         colorMode.innerHTML = "Light Mode";
@@ -291,35 +303,36 @@
         function changeColor() {
             if(status == 0){
                 colorMode.innerHTML = "Dark Mode";
-                colorMode.style.backgroundColor = "black";
                 colorMode.style.color = "white";
                 main.style.color = "white";
+                main.style.backgroundColor = "#3a3b3b";
                 todayBox.style.backgroundColor = "#3a3b3b";
-                stgBox.style.backgroundColor = "#3a3b3b";
+                calendar.style.backgroundColor = "#3a3b3b";
                 ltgBox.style.backgroundColor = "#3a3b3b";
-                boxes.forEach(function(box){
+                motivation.style.backgroundColor = "#3a3b3b";
+               /* boxes.forEach(function(box){
                     const boxSection = box.getAttribute("section");
                     if(boxSection === "pages"){
-                        box.style.backgroundColor = "black";
                         box.style.color = "white";
                     }
-                });
+                });*/
                 status = 1
             }else{
                 colorMode.innerHTML = "Light Mode";
-                colorMode.style.backgroundColor = "white";
                 colorMode.style.color = "black";
                 main.style.color = "black";
+                main.style.backgroundColor = "white";
                 todayBox.style.backgroundColor = "white";
-                stgBox.style.backgroundColor = "white";
+                calendar.style.backgroundColor = "white";
                 ltgBox.style.backgroundColor = "white";
-                boxes.forEach(function(box){
+                document.body.style.backgroundColor = "white";
+                motivation.style.backgroundColor = "white";
+                /*boxes.forEach(function(box){
                     const boxSection = box.getAttribute("section");
                     if(boxSection === "pages"){
-                        box.style.backgroundColor = "white";
                         box.style.color = "black";
                     }
-                });
+                });*/
                 status = 0;
             }
         }
