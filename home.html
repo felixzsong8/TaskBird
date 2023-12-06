@@ -4,6 +4,7 @@
     <title>TaskBird</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
         html, body {
             height: 100%;
@@ -15,13 +16,13 @@
         }
 
         .logoBox {
-            height: 40px;
+            height: 80px;
         }
 
         .logo {
             position: absolute;
             width: 99%;
-            height: 70px;
+            height: 130px;
             left: 0;
             top: 0;
             display: block;
@@ -73,6 +74,30 @@
             font-size: 15px;
             color: #000000;
             display: block;
+        }
+
+        .pages {
+            height: 100%;
+            width: 160px;
+            position: relative;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #DCD0FF;
+            overflow-x: hidden;
+            padding-top: 16px;
+        }
+
+        .pages a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #000000;
+            display: block;
+        }
+
+        .pages a:hover {
+            color: #ffd036;
         }
 
         .main {
@@ -177,8 +202,23 @@
             top: 450px;
             left: 5%;
             width: 250px;
-            height: 200px;
+            height: 250px;
+            padding: 10px;
         }
+        #catContainer {
+            max-width: 100%; /* Ensure the container does not exceed its parent's width */
+            max-height: 100%; /* Ensure the container does not exceed its parent's height */
+            overflow: hidden; /* Hide any overflowing content */
+        }
+
+        #catImage {
+            width: 100%; /* Take up 100% of the container's width */
+            height: 200px; /* Take up 100% of the container's height */
+            object-fit: cover; /* Maintain the image's aspect ratio while covering the entire container */
+        }
+       #motivationalMessage {
+        z-index: 3;
+       }
         .today {
             border: 2px solid #ff990062;
             position: absolute;
@@ -215,20 +255,18 @@
             background-color: white
         }
 
-
     </style> 
 </head>
 <body>
     <div class="nav">
         <a href="home.html" class="logoBox">
-            <img class="logo" src="title.png" id="logo" ></img>
+            <img class="logo" src="Taskbird.png" id="logo" ></img>
         </a>
         <div class="pages">
-            <a href="https://felixzsong8.github.io/TaskBird/home.html" section="pages" class="box"><strong>Home</strong></a><br>
-            <a href="https://felixzsong8.github.io/TaskBird/calendar.html" section="pages" class="box">Calendar</a><br>
-            <a href="https://felixzsong8.github.io/TaskBird/checklist.html" section="pages" class="box">CheckList</a><br>
-            <a href="https://felixzsong8.github.io/TaskBird/entertainment.html" section="pages" class="box">Entertainment</a><br>
-            <a href="https://yvonnel.sgedu.site/final_proj/format_connect.php" section="pages" class="box">Connect</a><br>
+            <a href='https://felixzsong8.github.io/TaskBird/home.html'><i class='fa fa-fw fa-home'></i>Home</a>
+            <a href='https://felixzsong8.github.io/TaskBird/calendar.html'><i class='fa fa-fw fa-calendar'></i> Calendar</a>
+            <a href='https://felixzsong8.github.io/TaskBird/checklist.html'><i class='fa fa-fw fa-check-square-o'></i>CheckList</a>
+            <a href='https://yvonnel.sgedu.site/final_proj/connect_catfilt.php'><i class='fa fa-fw fa-user'></i> <strong>Connect</strong></a>
         </div>
     </div>
     <div class="mode">
@@ -266,7 +304,10 @@
            </div>
         </div>
         <div class="motivation" id="motivation">
-            insert cat picture
+            <div id="catContainer">
+                <img src="" id="catImage" alt="Random Cat">
+                <p id="motivationalMessage"></p>
+            </div>
         </div>
         <div id="today" class="today">
             <div class ="date" id="date"></div>
@@ -288,7 +329,7 @@
         dateContainer.innerHTML = day + ", " + (currentDate.getMonth()+1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
         //Lightmode
         var colorMode = document.getElementById("mode");
-        var title = document.querySelector(".main h1")
+        var title = document.querySelector(".main h1");
         var main = document.getElementById("main");
         var weatherBox = document.getElementById("weather");
         var todayBox = document.getElementById("today");
@@ -390,6 +431,31 @@
         searchBtn.addEventListener("click", ()=>{
             checkWeather(searchBox.value);
         });
+        //Cat motivation
+        async function fetchMotivationalData() {
+            const catApiUrl = 'https://api.thecatapi.com/v1/images/search';
+            const response = await fetch(catApiUrl);
+            const catData = await response.json();
+
+            const catImage = document.getElementById('catImage');
+            const motivationalMessage = document.getElementById('motivationalMessage');
+
+            // You can replace this with an array of motivational messages
+            const motivationalMessages = [
+               "You've got this!",
+                "Believe in yourself!",
+                "Stay pawsitive!",
+                "Chase your dreams!",
+            // Add more motivational messages as needed
+            ];
+
+        const randomMessage = motivationalMessages[Math.floor(Math.random() * motivationalMessages.length)];
+
+        catImage.src = catData[0].url;
+        motivationalMessage.textContent = randomMessage;
+        }
+        fetchMotivationalData();
+
         
 
     </script>
