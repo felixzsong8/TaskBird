@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>TaskBird Checlist</title>
+    <title>TaskBird Checklist</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
@@ -69,41 +69,91 @@
             border-color: black;
         }
 
-/*         .main {
-            margin-left: 200px; /* Adjust the margin to accommodate the width of the nav bar */
-            position: relative;
-            width: 86.8%; /* Adjust the width to account for the margin */
-            height: calc(100% - 80px);
-            background-color: white;
-            text-align: center;
-        }
-        .h1 {
-            margin-left: 50px;
-            padding-top: 20px;
-            padding-bottom: 50px;
-        } */
-
-      /* Added styles for the new class */
         .topPart {
-            margin: auto;
-            text-align: center;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-/*             height: calc(100vh - 80px); /* Adjusted height */ */
-        }
+                margin-left: 220px; /* Same as the left margin of CheckListWrapper */
+                margin-right: 40px; /* Same as the right margin of CheckListWrapper */
+                width: calc(100% - 280px); /* Adjust to align with CheckListWrapper's width */
+                text-align: center;
 
+  
+                /* ... other styles ... */
+            }
+        
         #checkList {
             margin: 20px auto;
             text-align: center;
         }
 
-        button {
-            padding: 10px;
-            margin: 5px;
+        #addTaskBtn {
+            padding: 15px;
+            margin: 10px;
+        border-radius: 8px;
         }
+
+        #checklistWrapper {
+    border: 2px solid #000;
+    padding: 10px;
+    min-height: 200px;
+    margin: 20px 40px 20px 150px;
+    width: calc(100% - 280px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px; /* Rounded edges */
+}
+
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+/* General style for buttons */
+button {
+    transition: background-color 0.3s ease; /* Smooth transition for the hover effect */
+}
+
+/* Hover effect */
+button:hover {
+    background-color: #d3d3d3; /* Change to a darker shade */
+}
+
+.button-container {
+    display: flex;
+}
+
+.task-button {
+    padding: 5px 10px;
+    margin-left: 5px; /* Space between buttons */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+        .task div {
+            display: flex;
+            gap: 10px;
+        }
+
+        #addTaskBtn {
+    background-color:#DCD0FF; /* Light purple color */
+    padding: 15px 30px; /* Increase padding for wider appearance */
+    border-radius: 8px;
+    border: 2px solid #000;
+    cursor: pointer;
+    outline: none;
+    color: black; /* Adjust text color as needed */
+    font-size: 16px; /* Optionally adjust font size */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#addTaskBtn:hover {
+    background-color: #C0AEC0; /* Slightly darker shade for hover effect */
+}
         
         #taskModal {
           display: none;
@@ -127,8 +177,6 @@
             .task-section {
               margin-bottom: 10px;
             }
-            
-          /* ... Your existing styles ... */
 
             #urgencyButtons {
               display: flex;
@@ -146,15 +194,10 @@
               font-size: 14px; /* Increase the font size */
             }
             
-            /* Add styling for the selected button */
             .urgencyBtn.selected {
               border: 2px solid black;
             }
 
-/* ... Your existing styles ... */
-
-
-        
         .close {
           color: #aaa;
           float: right;
@@ -167,8 +210,18 @@
           cursor: pointer;
         }
 
-        
+        #doneListWrapper {
+            border: 2px solid #000;
+            padding: 10px;
+            margin: 20px 40px 20px 150px;
+            width: calc(100% - 280px);
+            border-radius: 15px;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            min-height: 200px;
 
+        }
 
     </style>
 </head>
@@ -190,120 +243,138 @@
             <a href="#" section="pages" class="box">Add New Page</a>
         </div>
     </div>
-<!--     <div class="main" id="main"> -->
-    
-<div class="topPart"> 
-     <h1>My Daily CheckList</h1>
-    <p>welcome to your checklist! add events and see them in order of urgency</p>
 
-</div>   
-    
-<!--     </div> -->
-
-    <div id="checkList">
-        <button id="addTaskBtn">Add Task</button>
-        <ul id="taskList"></ul>
+    <div class="topPart"> 
+        <h1>My Daily Checklist</h1>
+        <p>Welcome to your checklist! Add events and see them in order of urgency.</p>
+        <div class="addTaskBtn"><button id="addTaskBtn">Add Task</button></div>
+        <div id="checklistWrapper">
+            <h2>TODO List</h2>
+        </div>
+        <div id="doneListWrapper">
+            <h2>Completed Tasks</h2>
+        </div>
     </div>
 
-   <div id="taskModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div class="task-section">
-      <label for="taskName">Task Name:</label>
-      <input type="text" id="taskName" required>
+    <!-- <div class="addTaskBtn"><button id="addTaskBtn">Add Task</button> </div>  -->
+
+    <!-- <div id="checklistWrapper">Checklist</div> -->
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="task-section">
+                <label for="taskName">Task Name:</label>
+                <input type="text" id="taskName" required>
+            </div>
+            <div class="task-section">
+                <label for="duration">Estimated Duration (in minutes):</label>
+                <input type="number" id="duration" required>
+            </div>
+            <div class="task-section">
+                <label>Urgency:</label>
+                <div id="urgencyButtons">
+                    <button class="urgencyBtn" data-urgency="1" style="background-color: rgb(30,144,255);"><span data-urgency="1">Not Urgent</span></button>
+                    <button class="urgencyBtn" data-urgency="2" style="background-color: rgb(60,179,113);"><span data-urgency="2">Slightly Urgent</span></button>
+                    <button class="urgencyBtn" data-urgency="3" style="background-color: rgb(255,255,0);"><span data-urgency="3">Moderately Urgent</span></button>
+                    <button class="urgencyBtn" data-urgency="4" style="background-color: rgb(255,0,0);"><span data-urgency="4">Very Urgent</span></button>
+                </div>
+            </div>
+            <button id="addTask">Submit Task</button>
+        </div>
     </div>
-    <div class="task-section">
-      <label for="duration">Estimated Duration (in minutes):</label>
-      <input type="number" id="duration" required>
-    </div>
-    <div class="task-section">
-      <label>Urgency:</label>
-      <div id="urgencyButtons">
-        <button class="urgencyBtn" data-urgency="1" style="background-color: rgb(30,144,255);"><span data-urgency="1">Not Urgent</span></button>
-        <button class="urgencyBtn" data-urgency="2" style="background-color: rgb(60,179,113);"><span data-urgency="2">Slightly Urgent</span></button>
-        <button class="urgencyBtn" data-urgency="3" style="background-color: rgb(255,255,0);"><span data-urgency="3">Moderately Urgent</span></button>
-        <button class="urgencyBtn" data-urgency="4" style="background-color: rgb(255,0,0);"><span data-urgency="4">Very Urgent</span></button>
-      </div>
-    </div>
-    <button id="addTask">Submit Task</button>
-  </div>
-</div>
 
+     <script>
+      document.addEventListener('DOMContentLoaded', function () {
+    const addTaskBtn = document.getElementById('addTaskBtn');
+    const checklistWrapper = document.getElementById('checklistWrapper');
+    const taskModal = document.getElementById('taskModal');
+    const closeBtn = document.querySelector('.close');
+    const addTask = document.getElementById('addTask');
 
-    <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const addTaskBtn = document.getElementById('addTaskBtn');
-  const taskList = document.getElementById('taskList');
-  const taskModal = document.getElementById('taskModal');
-  const closeBtn = document.querySelector('.close');
-  const addTask = document.getElementById('addTask');
+    addTaskBtn.addEventListener('click', () => {
+        taskModal.style.display = 'block';
+    });
 
-  addTaskBtn.addEventListener('click', () => {
-    taskModal.style.display = 'block';
-  });
+    closeBtn.addEventListener('click', () => {
+        taskModal.style.display = 'none';
+    });
 
-  closeBtn.addEventListener('click', () => {
-    taskModal.style.display = 'none';
-  });
+    window.addEventListener('click', (event) => {
+        if (event.target === taskModal) {
+            taskModal.style.display = 'none';
+        }
+    });
 
-  window.addEventListener('click', (event) => {
-    if (event.target === taskModal) {
-      taskModal.style.display = 'none';
-    }
-  });
+    addTask.addEventListener('click', () => {
+        const taskName = document.getElementById('taskName').value.trim();
+        const duration = document.getElementById('duration').value.trim();
+        let urgency = 0;
+        let urgencyColor = '';
 
-  addTask.addEventListener('click', () => {
-    const taskName = document.getElementById('taskName').value;
-    const duration = document.getElementById('duration').value;
+        document.querySelectorAll('.urgencyBtn').forEach((btn) => {
+            if (btn.classList.contains('selected')) {
+                urgency = parseInt(btn.getAttribute('data-urgency'));
+                urgencyColor = btn.style.backgroundColor;
+            }
+        });
+
+        if (taskName === '' || duration === '' || urgency === 0) {
+            alert('Please fill out a name, estimated duration, and urgency');
+            return;
+        }
+
+        const newTask = document.createElement('div');
+        newTask.className = 'task';
+        newTask.style.backgroundColor = urgencyColor;
+        newTask.innerHTML = `<strong>${taskName}</strong> - Duration: ${duration} min`;
+        newTask.dataset.urgency = urgency;
+
+        let tasks = Array.from(checklistWrapper.getElementsByClassName('task'));
+        let insertIndex = tasks.findIndex(task => parseInt(task.dataset.urgency) <= urgency);
+
+        if (insertIndex === -1) {
+            checklistWrapper.appendChild(newTask);
+        } else {
+            checklistWrapper.insertBefore(newTask, tasks[insertIndex]);
+        }
+
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'button-container';
+
+        const doneButton = document.createElement('button');
+        doneButton.innerText = 'DONE';
+        doneButton.className = 'task-button';
+        doneButton.addEventListener('click', () => {
+            const doneListWrapper = document.getElementById('doneListWrapper');
+            newTask.removeChild(buttonContainer); // Remove the buttons
+            doneListWrapper.appendChild(newTask); // Move the task to the DoneList
+        });
+        buttonContainer.appendChild(doneButton);
+
+        const addToCalButton = document.createElement('button');
+        addToCalButton.innerText = 'ADD TO CAL';
+        addToCalButton.className = 'task-button';
+        addToCalButton.addEventListener('click', () => alert('Hello from ADD TO CAL'));
+        buttonContainer.appendChild(addToCalButton);
+
+        newTask.appendChild(buttonContainer);
+
+        taskModal.style.display = 'none';
+    });
+
     const urgencyButtons = document.querySelectorAll('.urgencyBtn');
-    let urgency = 1;
-
     urgencyButtons.forEach((btn) => {
-      if (btn.classList.contains('selected')) {
-        urgency = parseInt(btn.getAttribute('data-urgency'));
-      }
+        btn.addEventListener('click', () => {
+            urgencyButtons.forEach((otherBtn) => {
+                otherBtn.classList.remove('selected');
+            });
+            btn.classList.add('selected');
+        });
     });
-
-    const newTask = document.createElement('li');
-    newTask.innerHTML = `<strong>${taskName}</strong> - Duration: ${duration} min, Urgency: ${urgency}`;
-    newTask.setAttribute('data-urgency', urgency);
-
-    // Find the appropriate position to insert the task based on urgency
-    let insertIndex = 0;
-    const tasks = taskList.children;
-
-    for (let i = 0; i < tasks.length; i++) {
-      const taskUrgency = parseInt(tasks[i].getAttribute('data-urgency'));
-      if (urgency > taskUrgency) {
-        break;
-      }
-      insertIndex++;
-    }
-
-    // Insert the task at the correct position
-    taskList.insertBefore(newTask, tasks[insertIndex] || null);
-
-    taskModal.style.display = 'none';
-  });
-
-  const urgencyButtons = document.querySelectorAll('.urgencyBtn');
-
-  urgencyButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      urgencyButtons.forEach((otherBtn) => {
-        otherBtn.classList.remove('selected');
-      });
-      btn.classList.add('selected');
-    });
-  });
 });
-
     </script>
 
-
-                
-
-    
     <script>
         //Script to work for the Date
         var currentDate = new Date();
