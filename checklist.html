@@ -4,80 +4,107 @@
     <title>TaskBird Checklist</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif; /* Added a default font */
+            font-family: "Monaco",monospace; /* Added a default font */
+            background-color: white; /* Set the entire background color */
         }
 
-        .header {
-            position: relative;
-            width: 100%;
+        .logoBox {
             height: 80px;
-            background-color:#DCD0FF ; /*DCD0FF */
-            display: flex; /* Added to align items vertically */
-            justify-content: space-between; /* Added to create space between logo and mode */
-            align-items: center; /* Center items vertically */
-            
         }
+
+        .logo {
+            position: absolute;
+            width: 99%;
+            height: 130px;
+            left: 0;
+            top: 0;
+            display: block;
+        }
+
         .mode {
-            margin-right: 100px;
+            position: absolute;
+            top: 2%;
+            margin-left: 90%;
+            margin-bottom: -5%;
+            z-index: 3;
         }
+
+        .mode button:hover {
+            color: white;
+            background-color: #DCD0FF;
+        }
+
         .mode button {
+            margin-top: 2%;
             text-decoration: none;
             color: black;
             padding: 10px;
-            background-color: white;
+            background-color: #ffc800;
             border-radius: 5px;
             text-align: center;
             cursor: pointer;
             border: none;
             outline: none;
         }
-        .date {
-            position: absolute;
-            left: 200px;
-            font-size: 25px;
-        }
-        .nav {
-            position: absolute;
-            top: 80px;
-            left: 0;
-            height: 90%;
-            width: 200px;
-            background-color: rgb(194, 194, 194);
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
 
+        .nav {
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1; /* Update the z-index */
+            top: 0;
+            left: 0;
+            background-color: #DCD0FF;
+            overflow-x: hidden;
+            padding-top: 16px;
+            line-height: 10px;
         }
+
+
         .nav a {
+            padding: 6px 8px 6px 16px;
             text-decoration: none;
-            color: black;
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: white;
-            border-radius: 5px;
-            text-align: center;
-            line-height: 50px;
+            font-size: 15px;
+            color: #000000;
+            display: block;
         }
+
         .pages {
-            border-color: black;
+            height: 100%;
+            width: 160px;
+            position: relative;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #DCD0FF;
+            overflow-x: hidden;
+            padding-top: 16px;
+        }
+
+        .pages a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #000000;
+            display: block;
+        }
+
+        .pages a:hover {
+            color: #ffd036;
         }
 
         .topPart {
-                margin-left: 220px; /* Same as the left margin of CheckListWrapper */
-                margin-right: 40px; /* Same as the right margin of CheckListWrapper */
-                width: calc(100% - 280px); /* Adjust to align with CheckListWrapper's width */
-                text-align: center;
-
-  
-                /* ... other styles ... */
-            }
+            margin-left: 140px; /* Adjusted margin to match the width of the navigation bar */
+            margin-right: 40px;
+            width: calc(100% - 160px); /* Adjusted width to fill the remaining space */
+            text-align: center;
+        }
         
         #checkList {
             margin: 20px auto;
@@ -94,8 +121,8 @@
     border: 2px solid #000;
     padding: 10px;
     min-height: 200px;
-    margin: 20px 40px 20px 150px;
-    width: calc(100% - 280px);
+    margin: 20px 40px 20px 100px; /* Adjusted margin to match the width of the navigation bar */
+    width: calc(100% - 200px); /* Adjusted width to fill the remaining space */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -211,39 +238,34 @@ button:hover {
         }
 
         #doneListWrapper {
-            border: 2px solid #000;
-            padding: 10px;
-            margin: 20px 40px 20px 150px;
-            width: calc(100% - 280px);
-            border-radius: 15px;
-            display: flex;
-            text-align: center;
-            flex-direction: column;
-            min-height: 200px;
-
-        }
+    border: 2px solid #000;
+    padding: 10px;
+    margin: 20px 40px 20px 100px; /* Adjusted margin to match the width of the navigation bar */
+    width: calc(100% - 200px); /* Adjusted width to fill the remaining space */
+    border-radius: 15px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    min-height: 200px;
+}
 
     </style>
 </head>
 <body>
-    <div class="header">
-        <a class="logo" href="home.html"><img style="width:100px; height: 100%; margin-left: 5px;"  src="TaskBird.png" id="logo" ></img></a>
-        <div class ="date" id="date"></div>
-        <div class="mode">
-            <button type="button" id="mode" onclick="changeColor()">Light Mode</button>
-        </div>
-    </div>
     <div class="nav">
+        <a href="home.html" class="logoBox">
+            <img class="logo" src="TaskBird.png" id="logo" ></img>
+        </a>
         <div class="pages">
-            <a href="home.html" section="pages" class="box">Home</a><br>
-            <a href="calendar.html" section="pages" class="box">Calendar</a><br>
-            <a href="checklist.html" section="pages" class="box"><strong>Checklist</strong></a><br>
-            <a href="entertainment.html" section="pages" class="box">Entertainment</a><br>
-            <a href="connect.html" section="pages" class="box">Connect</a><br>
-            <a href="#" section="pages" class="box">Add New Page</a>
+            <a href='https://felixzsong8.github.io/TaskBird/home.html'><i class='fa fa-fw fa-home'></i>Home</a>
+            <a href='https://felixzsong8.github.io/TaskBird/calendar.html'><i class='fa fa-fw fa-calendar'></i>Calendar</a>
+            <a href='https://felixzsong8.github.io/TaskBird/checklist.html'><i class='fa fa-fw fa-check-square-o'></i><strong>CheckList</strong></a>
+            <a href='https://yvonnel.sgedu.site/final_proj/connect_catfilt.php'><i class='fa fa-fw fa-user'></i>Connect</a>
         </div>
     </div>
-
+    <div class="mode">
+        <button type="button" id="mode" onclick="changeColor()">Light Mode</button>
+    </div>
     <div class="topPart"> 
         <h1>My Daily Checklist</h1>
         <p>Welcome to your checklist! Add events and see them in order of urgency.</p>
@@ -381,39 +403,9 @@ button:hover {
         dateContainer = document.getElementById("date");
         days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
         day = days[currentDate.getDay()];
-        dateContainer.innerHTML = day + ", " + (currentDate.getMonth()+1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
+        //dateContainer.innerHTML = day + ", " + (currentDate.getMonth()+1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
         //Lightmode
-        var colorMode = document.getElementById("mode");
-        var main = document.getElementById("main");
-        const boxes = document.querySelectorAll(".box");
-        main.style.backgroundColor = "white";
-        colorMode.innerHTML = "Light Mode";
         
-        function changeColor() {
-            if(main.style.backgroundColor == "white"){
-                main.style.backgroundColor = "black";
-                colorMode.innerHTML = "Dark Mode";
-                main.style.color = "white";
-                boxes.forEach(function(box){
-                    const boxSection = box.getAttribute("section");
-                    if(boxSection === "pages"){
-                        box.style.backgroundColor = "black";
-                        box.style.color = "white";
-                    }
-                });
-            }else{
-                main.style.backgroundColor = "white";
-                colorMode.innerHTML = "Light Mode";
-                main.style.color = "black";
-                boxes.forEach(function(box){
-                    const boxSection = box.getAttribute("section");
-                    if(boxSection === "pages"){
-                        box.style.backgroundColor = "white";
-                        box.style.color = "black";
-                    }
-                });
-            }
-        }
     </script>
 </body>
 </html>
