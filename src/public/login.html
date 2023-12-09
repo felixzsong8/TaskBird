@@ -66,6 +66,8 @@
     <script>
         function login() {
             
-            window.location.href =  window.location.href + '/google'
+            currentPage = window.location.href;
+            newPage = currentPage.replace("login.html","google");
+            window.location.href = newPage;
         }
     </script>
