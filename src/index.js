@@ -212,6 +212,11 @@ app.get('/frontend', isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Serve HTML page with login
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server started on PORT ${PORT}`);
