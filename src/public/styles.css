@@ -5,18 +5,10 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: "Monaco",monospace; /* Added a default font */
-            background-color: white; /* Set the entire background color */
-            display: flex; /* Use flex to align navbar and main */
-        }
 
-        .logoBox {
-            height: 80px;
-        }
+.logoBox {
+    height: 80px;
+}
 
         .logo {
             position: absolute;
@@ -98,6 +90,14 @@ html, body {
         .pages a:hover {
             color: #ffd036;
         }
+body{
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: center;
+  min-height: 100vh;
+  background: rgb(194, 194, 194);
+}
 .wrapper{
   width: 450px;
   background: #fff;
