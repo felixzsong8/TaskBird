@@ -6,18 +6,19 @@ const nextIcon = document.querySelector('.material-symbols-rounded:last-child');
 let date = new Date();
 let currYear = date.getFullYear();
 let currMonth = date.getMonth();
+const BASE_URL = window.location.origin;
 
 const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 
 async function fetchEventsForMonth(year, month) {
-    const response = await fetch(`/get_events?year=${year}&month=${month}`);
+    const response = await fetch(`${BASE_URL}/get_events?year=${year}&month=${month}`);
     const events = await response.json();
     return events.map(event => new Date(event.start.dateTime || event.start.date).getDate());
 }
 
 async function fetchEventsForDay(year, month, day) {
-    const response = await fetch(`/get_events_day?year=${year}&month=${month}&day=${day}`);
+    const response = await fetch(`${BASE_URL}/get_events_day?year=${year}&month=${month}&day=${day}`);
     const events = await response.json();
     return events;
 }
@@ -112,7 +113,7 @@ function createDeleteButton(eventId) {
 
 async function handleDeleteClick(eventId) {
     try {
-        const response = await fetch('/delete_event', {
+        const response = await fetch(`${BASE_URL}/delete_event`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -154,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         try {
-            const response = await fetch('/add_event', {
+            const response = await fetch(`${BASE_URL}/add_event`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

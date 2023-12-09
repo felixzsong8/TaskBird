@@ -6,11 +6,17 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import session from 'express-session';
 import moment from 'moment-timezone';
+import cors from 'cors';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8000;
+const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Google Calendar API setup
 const calendar = google.calendar('v3');
@@ -51,7 +57,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Google OAuth2 authentication URL
 app.get('/google', (req, res) => {
     const url = oauth2Client.generateAuthUrl({
-        access_type: 'offline',
+        access_type: 'online',
         scope: ['https://www.googleapis.com/auth/calendar'],
         prompt: 'consent'
     });
@@ -116,6 +122,7 @@ app.get('/get_events', isAuthenticated, async (req, res) => {
         });
         // Log the events to the console
         //console.log(`Fetched ${events.data.items.length} events:`, events.data.items);
+        res.header("Access-Control-Allow-Origin", `${BASE_URL}/frontend`);
         res.json(events.data.items);
     } catch (error) {
         console.error('Error fetching events:', error);
