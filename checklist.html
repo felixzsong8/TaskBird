@@ -302,7 +302,7 @@ button:hover {
                     <button class="urgencyBtn" data-urgency="4" style="background-color: rgb(255,0,0);"><span data-urgency="4">Very Urgent</span></button>
                 </div>
             </div>
-            <button id="addTask" onclick="addToMongoDB()">Submit Task</button>
+            <button id="addTask">Submit Task</button>
         </div>
     </div>
 
@@ -394,47 +394,6 @@ button:hover {
             });
         });
     });
-    async function addToMongoDB() {
-            const taskName = document.getElementById('taskName').value.trim();
-            const duration = document.getElementById('duration').value.trim();
-            let urgency = 0;
-
-            document.querySelectorAll('.urgencyBtn').forEach((btn) => {
-                if (btn.classList.contains('selected')) {
-                urgency = parseInt(btn.getAttribute('data-urgency'));
-                }
-            });
-
-            if (taskName === '' || duration === '' || urgency === 0) {
-                alert('Please fill out a name, estimated duration, and urgency');
-                return;
-            }
-
-            try {
-                const response = await fetch('/addTask', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    taskName,
-                    duration,
-                    urgency,
-                }),
-                });
-
-                if (!response.ok) {
-                throw new Error('Error adding task to MongoDB');
-                }
-
-                // Assuming success, you can handle the UI changes here
-                // For example, close the modal, update the task list, etc.
-                taskModal.style.display = 'none';
-                alert('Task added successfully!');
-            } catch (error) {
-                console.error('Error adding task:', error);
-            }
-        }
     </script>
 
     <script>
