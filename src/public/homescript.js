@@ -8,7 +8,7 @@ let currYear = date.getFullYear();
 let currMonth = date.getMonth();
 const BASE_URL = window.location.origin;
 console.log(BASE_URL);
-console.log(13);
+
 
 const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
@@ -31,20 +31,20 @@ const renderCalendar = async () => {
     const lastDayOfMonth = new Date(currYear, currMonth, lastDateOfMonth).getDay();
     const lastDateOfLastMonth = new Date(currYear, currMonth, 0).getDate();
     let liTag = "";
-
+    console.log(10);
     const eventDates = await fetchEventsForMonth(currYear, currMonth);
 
     for (let i = firstDayOfMonth; i > 0; i--) {
         liTag += `<li class="inactive">${lastDateOfLastMonth - i + 1}</li>`;
     }
-
+    console.log(11);
     for (let i = 1; i <= lastDateOfMonth; i++) {
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "active" : "";
         let hasEvent = eventDates.includes(i);
         let eventDot = hasEvent ? '<span class="event-dot"></span>' : '';
         liTag += `<li class="${isToday}" data-day="${i}">${i}${eventDot}</li>`;
     }
-
+    console.log(12);
     for (let i = lastDayOfMonth; i < 6; i++) {
         liTag += `<li class="inactive">${i - lastDayOfMonth + 1}</li>`;
     }
@@ -53,7 +53,7 @@ const renderCalendar = async () => {
     formattedCurrentDate = `${months[currMonth]} ${currYear}`;
     const eventDetailsHeader = document.querySelector('.event-details h2');
     eventDetailsHeader.innerText = `${formattedCurrentDate} Events`;
-
+    console.log(13);
     const dayElements = document.querySelectorAll('.days li');
     dayElements.forEach((dayElement) => {
         dayElement.addEventListener('click', handleDayClick);
