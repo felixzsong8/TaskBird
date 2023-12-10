@@ -460,12 +460,12 @@ button:hover {
             const donelistItems = Array.from(donelistWrapper.getElementsByClassName('task'));
             const donelistData = donelistItems.map(item => ({
                 name: item.querySelector('strong').innerText,
-                //duration: item.querySelector('div').innerText,
                 urgency: item.dataset.urgency,
                 backgroundColor: item.style.backgroundColor
             }));
             setCookie('donelist', JSON.stringify(donelistData), 7);
         }
+
 
         // Function to load checklist data from cookies
         function loadDonelistFromCookies() {
@@ -499,45 +499,49 @@ button:hover {
             }
         }
         function loadChecklistFromCookies() {
-            console.log("saving check");
             const storedChecklist = getCookie('checklist');
             if (storedChecklist) {
                 const checklistData = JSON.parse(storedChecklist);
-
+        
                 checklistData.forEach(item => {
-                    const newTask = document.createElement('div');
-                    newTask.className = 'task';
-                    newTask.style.backgroundColor = item.backgroundColor;
-                    newTask.innerHTML = `<strong>${item.name}</strong> - Duration: ${item.duration}`;
-                    newTask.dataset.urgency = item.urgency;
-
-                    const buttonContainer = document.createElement('div');
-                    buttonContainer.className = 'button-container';
-
-                    // ... (Add buttons to buttonContainer) ...
-
-                    newTask.appendChild(buttonContainer);
+                    const newTask = createTaskElement(item);
+                    const checklistWrapper = document.getElementById('checklistWrapper');
                     checklistWrapper.appendChild(newTask);
-                    const doneButton = document.createElement('button');
-                    doneButton.innerText = 'DONE';
-                    doneButton.className = 'task-button';
-                    doneButton.addEventListener('click', () => {
-                        const doneListWrapper = document.getElementById('doneListWrapper');
-                        newTask.removeChild(buttonContainer); // Remove the buttons
-                        doneListWrapper.appendChild(newTask); // Move the task to the DoneList
-                    });
-                    buttonContainer.appendChild(doneButton);
-
-                    const addToCalButton = document.createElement('button');
-                    addToCalButton.innerText = 'ADD TO CAL';
-                    addToCalButton.className = 'task-button';
-                    addToCalButton.addEventListener('click', () => alert('Hello from ADD TO CAL'));
-                    buttonContainer.appendChild(addToCalButton);
-
-                    newTask.appendChild(buttonContainer);
-                    taskModal.style.display = 'none';
                 });
             }
+        }
+
+        function createTaskElement(item) {
+            const newTask = document.createElement('div');
+            newTask.className = 'task';
+            newTask.style.backgroundColor = item.backgroundColor;
+            newTask.innerHTML = `<strong>${item.name}</strong>`;
+            newTask.dataset.urgency = item.urgency;
+        
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'button-container';
+        
+            const doneButton = document.createElement('button');
+            doneButton.innerText = 'DONE';
+            doneButton.className = 'task-button';
+            doneButton.addEventListener('click', () => {
+                // Remove the buttons
+                newTask.removeChild(buttonContainer);
+                // Move the task to the DoneList
+                const donelistWrapper = document.getElementById('doneListWrapper');
+                donelistWrapper.appendChild(newTask);
+                // Save the updated done list to cookies
+                saveDonelistToCookies();
+                // Remove the task from the checklist
+                newTask.remove();
+            });
+            buttonContainer.appendChild(doneButton);
+        
+            // ... (Add other buttons to buttonContainer if needed) ...
+        
+            newTask.appendChild(buttonContainer);
+        
+            return newTask;
         }
         function removeDonelistItemFromCookies(itemName) {
             const checkCookies = getCookie('checklist');
