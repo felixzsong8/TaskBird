@@ -112,5 +112,144 @@
             </form>
             
         </div>
+        <script>
+        //Script to work for the Date
+        /*var currentDate = new Date();
+        dateContainer = document.getElementById("date");
+        days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+        day = days[currentDate.getDay()];
+        dateContainer.innerHTML = day + ", " + (currentDate.getMonth()+1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();*/
+        //Lightmode
+        var colorMode = document.getElementById("mode");
+        var title = document.querySelector(".main h1");
+        var main = document.getElementById("main");
+        var weatherBox = document.getElementById("weather");
+        var todayBox = document.getElementById("today");
+        var calendar = document.getElementById("calendar");
+        var ltgBox = document.getElementById("ltg");
+        var motivation = document.getElementById("motivation");
+        const boxes = document.querySelectorAll(".box");
+        main.style.backgroundColor = "white";
+        colorMode.innerHTML = "Light Mode";
+        var status = 0;
+        //<a class="logo" href="home.html"><img src="TaskBird.png" id="logo" ></img></a>
+        function changeColor() {
+            if(status == 0){
+                colorMode.innerHTML = "Dark Mode";
+                colorMode.style.color = "white";
+                main.style.color = "white";
+                main.style.backgroundColor = "#3a3b3b";
+                todayBox.style.backgroundColor = "#3a3b3b";
+                calendar.style.backgroundColor = "#3a3b3b";
+                ltgBox.style.backgroundColor = "#3a3b3b";
+                motivation.style.backgroundColor = "#3a3b3b";
+               /* boxes.forEach(function(box){
+                    const boxSection = box.getAttribute("section");
+                    if(boxSection === "pages"){
+                        box.style.color = "white";
+                    }
+                });*/
+                status = 1
+            }else{
+                colorMode.innerHTML = "Light Mode";
+                colorMode.style.color = "black";
+                main.style.color = "black";
+                main.style.backgroundColor = "white";
+                todayBox.style.backgroundColor = "white";
+                calendar.style.backgroundColor = "white";
+                ltgBox.style.backgroundColor = "white";
+                document.body.style.backgroundColor = "white";
+                motivation.style.backgroundColor = "white";
+                /*boxes.forEach(function(box){
+                    const boxSection = box.getAttribute("section");
+                    if(boxSection === "pages"){
+                        box.style.color = "black";
+                    }
+                });*/
+                status = 0;
+            }
+        }
+        //Weather div
+        const apiKey = "2cc9622df0a80bdc58d8d406b90093bf";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+        const searchBox = document.querySelector(".search input");
+        const searchBtn = document.querySelector(".search button");
+        const weatherIcon = document.querySelector(".weatherIcon")
+
+        async function checkWeather(city){
+            const response = await fetch(apiUrl + city + '&appid=' + apiKey);
+            if(response.status == 404){
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".error").innerHTML = "Invalid city name, try again";
+                document.querySelector(".display").style.display = "none";
+            }else if(response.status == 400){
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".error").innerHTML = "No city name given, try again";
+                document.querySelector(".display").style.display = "none";
+            }else{
+                var data = await response.json();
+                console.log(data);
+                document.querySelector(".city").innerHTML = data.name;
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
+                document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                document.querySelector(".wind").innerHTML = data.wind.speed + " km/h"
+
+                if(data.weather[0].main == "Clouds"){
+                    weatherIcon.src = "images/clouds.png"
+                }
+                if(data.weather[0].main == "Clear"){
+                    weatherIcon.src = "images/clear.png"
+                }
+                if(data.weather[0].main == "Rain"){
+                    weatherIcon.src = "images/rain.png"
+                }
+                if(data.weather[0].main == "Drizzle"){
+                    weatherIcon.src = "images/drizzle.png"
+                }
+                if(data.weather[0].main == "Mist"){
+                    weatherIcon.src = "images/mist.png"
+                }
+                if(data.weather[0].main == "Snow"){
+                    weatherIcon.src = "images/snow.png"
+                }
+
+                document.querySelector(".display").style.display = "block";
+                document.querySelector(".error").style.display = "none";
+            }
+
+            
+        }
+
+        searchBtn.addEventListener("click", ()=>{
+            checkWeather(searchBox.value);
+        });
+        //Cat motivation
+        async function fetchMotivationalData() {
+            const catApiUrl = 'https://api.thecatapi.com/v1/images/search';
+            const response = await fetch(catApiUrl);
+            const catData = await response.json();
+
+            const catImage = document.getElementById('catImage');
+            const motivationalMessage = document.getElementById('motivationalMessage');
+
+            // You can replace this with an array of motivational messages
+            const motivationalMessages = [
+               "You've got this!",
+                "Believe in yourself!",
+                "Stay pawsitive!",
+                "Chase your dreams!",
+            // Add more motivational messages as needed
+            ];
+
+        const randomMessage = motivationalMessages[Math.floor(Math.random() * motivationalMessages.length)];
+
+        catImage.src = catData[0].url;
+        motivationalMessage.textContent = randomMessage;
+        }
+        fetchMotivationalData();
+
+        
+
+    </script>
     </body>
 </html>
