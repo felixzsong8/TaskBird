@@ -190,7 +190,7 @@
             display: none;
         }
         .display {
-            line-height: 0px;
+            line-height: 10px;
             display: none;
         }
         .display h1 {
@@ -205,31 +205,27 @@
             margin-top: 10px;
         }
         .details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
-    margin-top: 20px;
-    font-size: 10px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            margin-top: 20px;
+            font-size: 10px;
+        }
+        .col {
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+        .col img {
+            width: 30px;
+            margin-right: 10px;
+        }
+        .humidity, .wind {
+            font-size: 10px;
+            margin-top: 20px;
 
-.col {
-    display: flex;
-    align-items: center;
-    text-align: left;
-    margin-bottom: 10px; /* Add margin to separate columns */
-}
-
-.col img {
-    width: 30px;
-    margin-right: 10px;
-}
-
-.humidity,
-.wind {
-    font-size: 10px;
-}
+        }
         /*End of the weather section */
         .motivation {
             border: 2px solid #ff990062;
