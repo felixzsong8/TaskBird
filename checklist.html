@@ -485,7 +485,6 @@ button:hover {
                     buttonContainer.className = 'button-container';
                 
                     const doneButton = document.createElement('button');
-                    doneButton.innerText = 'DONE';
                     doneButton.className = 'task-button';
                     doneButton.addEventListener('click', () => {
                         newTask.removeChild(buttonContainer); // Remove the buttons
@@ -493,12 +492,6 @@ button:hover {
                         removeDonelistItemFromCookies(item.name);
                     });
                     buttonContainer.appendChild(doneButton);
-                
-                    const addToCalButton = document.createElement('button');
-                    addToCalButton.innerText = 'ADD TO CAL';
-                    addToCalButton.className = 'task-button';
-                    addToCalButton.addEventListener('click', () => alert('Hello from ADD TO CAL'));
-                    buttonContainer.appendChild(addToCalButton);
                 
                     newTask.appendChild(buttonContainer);
                     donelistWrapper.appendChild(newTask);
