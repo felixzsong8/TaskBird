@@ -490,7 +490,7 @@ button:hover {
                     doneButton.addEventListener('click', () => {
                         newTask.removeChild(buttonContainer); // Remove the buttons
                         donelistWrapper.appendChild(newTask); // Move the task to the DoneList
-                        saveDonelistToCookies(); // Update cookies after moving the task
+                        removeDonelistItemFromCookies(item.name);
                     });
                     buttonContainer.appendChild(doneButton);
                 
@@ -546,6 +546,15 @@ button:hover {
                 });
             }
         }
+        function removeDonelistItemFromCookies(itemName) {
+            const storedChecklist = getCookie('checklist');
+            if (storedChecklist) {
+                const checklistData = JSON.parse(storedChecklist);
+                const updatedChecklist = checklistData.filter(item => item.name !== itemName);
+                setCookie('checklist', JSON.stringify(updatedChecklist), 7);
+            }
+        }
+        
         function clearAllCookies() {
             const cookies = document.cookie.split('; ');
 
