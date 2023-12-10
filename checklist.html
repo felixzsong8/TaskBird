@@ -469,11 +469,11 @@ button:hover {
 
         // Function to load checklist data from cookies
         function loadDonelistFromCookies() {
-            const storedChecklist = getCookie('checklist');
-            if (storedChecklist) {
-                const checklistData = JSON.parse(storedChecklist);
+            const storedDonelist = getCookie('donelist');
+            if (storedDonelist) {
+                const donelistData = JSON.parse(storedDonelist);
 
-                checklistData.forEach(item => {
+                donelistData.forEach(item => {
                     const newTask = document.createElement('div');
                     newTask.className = 'task';
                     newTask.style.backgroundColor = item.backgroundColor;
@@ -494,11 +494,11 @@ button:hover {
             }
         }
         function loadChecklistFromCookies() {
-            const storedDonelist = getCookie('donelist');
-            if (storedDonelist) {
-                const DonelistData = JSON.parse(storedDonelist);
+            const storedChecklist = getCookie('checklist');
+            if (storedChecklist) {
+                const checklistData = JSON.parse(storedChecklist);
 
-                donelistData.forEach(item => {
+                checklistData.forEach(item => {
                     const newTask = document.createElement('div');
                     newTask.className = 'task';
                     newTask.style.backgroundColor = item.backgroundColor;
