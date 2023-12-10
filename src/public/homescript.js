@@ -6,9 +6,9 @@ const nextIcon = document.querySelector('.material-symbols-rounded:last-child');
 let date = new Date();
 let currYear = date.getFullYear();
 let currMonth = date.getMonth();
-const BASE_URL = window.location.origin;
+const BASE_URL = window.location.href;
 console.log(BASE_URL);
-console.log(12);
+console.log(13);
 
 const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
