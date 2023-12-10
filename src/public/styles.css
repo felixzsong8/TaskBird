@@ -5,10 +5,9 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-
 .logoBox {
-    height: 80px;
-}
+            height: 20%;
+        }
 
         .logo {
             position: absolute;
@@ -22,8 +21,7 @@
         .mode {
             position: absolute;
             top: 2%;
-            margin-left: 90%;
-            margin-bottom: -5%;
+            right: 2%;
             z-index: 3;
         }
 
@@ -47,7 +45,7 @@
 
         .nav {
             height: 100%;
-            width: 160px;
+            width: 12%;
             position: fixed;
             z-index: 1; /* Update the z-index */
             top: 0;
@@ -69,7 +67,7 @@
 
         .pages {
             height: 100%;
-            width: 160px;
+            width: 100%;
             position: relative;
             z-index: 1;
             top: 0;
@@ -82,7 +80,7 @@
         .pages a {
             padding: 6px 8px 6px 16px;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 1.3vw;
             color: #000000;
             display: block;
         }
@@ -189,7 +187,7 @@ header .current-date{
 .event-details {
   position: absolute;
   top: 25%;
-  left: 20%;
+  left: 12%;
   width: 20%;
   padding: 10px;
   background-color: white;
