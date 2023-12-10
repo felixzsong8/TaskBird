@@ -540,13 +540,10 @@ button:hover {
             }
         }
         function removeDonelistItemFromCookies(itemName) {
-    const storedDonelist = getCookie('donelist');
-    if (storedDonelist) {
-        const donelistData = JSON.parse(storedDonelist);
-        const updatedDonelist = donelistData.filter(item => item.name !== itemName);
-        setCookie('donelist', JSON.stringify(updatedDonelist), 7);
-    }
-}
+            const checkCookies = getCookie('checklist');
+            checkCookies[0];
+            
+        }
         
         function clearAllCookies() {
             const cookies = document.cookie.split('; ');
