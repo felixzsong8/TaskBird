@@ -325,6 +325,7 @@
         <div class="calendarBox" id="calendarBox">
             <div class="wrapper">
             <header>
+                <p class="current-date">December 2023</p>
                 <div class="icons">
                     <span class="material-symbols-rounded">chevron_left</span>
                     <span class="material-symbols-rounded">chevron_right</span>
@@ -347,6 +348,17 @@
                     <ul id="eventList"></ul>
                 </div>
             </div>
+            
+            <form id="eventForm" class="event-form">
+                <h3>Add Event</h3>
+                <input type="text" id="summary" placeholder="Event Title" required>
+                <input type="text" id="location" placeholder="Location">
+                <textarea id="description" placeholder="Description"></textarea>
+                <input type="datetime-local" id="startDateTime" placeholder="Start Date & Time" required>
+                <input type="datetime-local" id="endDateTime" placeholder="End Date & Time" required>
+                <button type="submit">Add Event</button>
+            </form>
+            
         </div>
         </div>
         <div class="ltg" id="ltg">
