@@ -13,18 +13,65 @@
 
     <body>
         <div class="nav">
-            <a href="home.html" class="logoBox">
-                <img class="logo" src="https://felixzsong8.github.io/TaskBird/TaskBird.png" id="logo" ></img>
-            </a>
-            <div class="pages">
-                <a href='https://taskbird01-a292729c6ec9.herokuapp.com/home.html'><i class='fa fa-fw fa-home'></i>Home</a>
-                <a href='https://taskbird01-a292729c6ec9.herokuapp.com/index.html'><i class='fa fa-fw fa-calendar'></i><strong>Calendar</strong></a>
-                <a href='https://felixzsong8.github.io/TaskBird/checklist.html'><i class='fa fa-fw fa-check-square-o'></i>CheckList</a>
-                <a href='https://yvonnel.sgedu.site/final_proj/connect.php'><i class='fa fa-fw fa-user'></i>Connect</a>
+        <a href="home.html" class="logoBox">
+            <img class="logo" src="https://felixzsong8.github.io/TaskBird/TaskBird.png" id="logo" ></img>
+        </a>
+        <div class="pages">
+            <a href='https://felixzsong8.github.io/TaskBird/home.html'><i class='fa fa-fw fa-home'></i><strong>Home</strong></a>
+            <a href='https://taskbird01-a292729c6ec9.herokuapp.com'><i class='fa fa-fw fa-calendar'></i>Calendar</a>
+            <a href='https://felixzsong8.github.io/TaskBird/checklist.html'><i class='fa fa-fw fa-check-square-o'></i>CheckList</a>
+            <a href='https://yvonnel.sgedu.site/final_proj/connect.php'><i class='fa fa-fw fa-user'></i>Connect</a>
+        </div>
+    </div>
+    <div class="mode">
+        <button type="button" id="mode" onclick="changeColor()">Light Mode</button>
+    </div>
+    <div class="main" id="main">
+        <div class="weather" id="weather">
+           <div class="search">
+                <input type="text" placeholder="Enter city name" spellcheck="false">
+                <button><img src="https://felixzsong8.github.io/TaskBird/images/search.png"></button>
+           </div>
+           <div class="error">
+                <p>Invalid city name, try again</p>
+           </div>
+           <div class="display">
+                <img src="https://felixzsong8.github.io/TaskBird/images/rain.png" class="weatherIcon">
+                <h1 class="temp">22°c</h1>
+                <h2 class="city">New York</h2>
+                <div class="details">
+                    <div class="col">
+                        <img src="https://felixzsong8.github.io/TaskBird/images/humidity.png">
+                        <div>
+                            <p class="humidity">50%</p>
+                            <p>Humitidy</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <img src="https://felixzsong8.github.io/TaskBird/images/wind.png">
+                        <div>
+                            <p class="wind">15 km/h</p>
+                            <p>Speed</p>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+        <div class="motivation" id="motivation">
+            <div id="catContainer">
+                <img src="" id="catImage" alt="Random Cat">
+                <p id="motivationalMessage"></p>
             </div>
         </div>
-        <div class="mode">
-            <!--button type="button" id="mode" onclick="changeColor()">Light Mode</button-->
+        <div id="today" class="today">
+            <div class ="date" id="date"></div>
+            today scheudle
+        </div>
+        <div class="calendar" id="calendar">
+            Calendar Insert
+        </div>
+        <div class="ltg" id="ltg">
+            Long term goals
         </div>
         <div class="wrapper">
             <header>
@@ -63,5 +110,6 @@
             </form>
             
         </div>
+    </div>
     </body>
 </html>
