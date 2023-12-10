@@ -6,7 +6,7 @@ const nextIcon = document.querySelector('.material-symbols-rounded:last-child');
 let date = new Date();
 let currYear = date.getFullYear();
 let currMonth = date.getMonth();
-const BASE_URL = window.location.href;
+const BASE_URL = window.location.origin;
 console.log(BASE_URL);
 console.log(13);
 
