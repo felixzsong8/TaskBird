@@ -187,7 +187,7 @@ header .current-date{
 }
 
 .event-details {
-  position: absolute;
+  position: fixed;
   top: 25%;
   left: 14%;
   width: 20%;
