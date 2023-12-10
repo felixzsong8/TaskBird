@@ -536,8 +536,10 @@ button:hover {
                 const checklistData = JSON.parse(storedChecklist);
                 const updatedChecklist = checklistData.filter(item => item.name !== itemName);
                 setCookie('checklist', JSON.stringify(updatedChecklist), 7);
+                console.log(updatedChecklist);
             }
             console.log(storedChecklist);
+            console.log(getCookie('donelist');
         }
         
         function clearAllCookies() {
