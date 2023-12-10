@@ -188,9 +188,9 @@ header .current-date{
 
 .event-details {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 400px;
+  top: 50%;
+  left: 5%;
+  width: 20%;
   padding: 10px;
   background-color: white;
   border: 1px solid #ccc;
@@ -223,13 +223,13 @@ header .current-date{
 
 .event-form {
   position: fixed;
-  bottom: 0px;
+  bottom: 50%;
   right: 0px;
   background: #fff;
   padding: 20px;
   border-radius: 0px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 400px;
+  width: 20%;
 }
 
 .event-form h3 {
