@@ -546,6 +546,7 @@ button:hover {
                 const updatedChecklist = checklistData.filter(item => item.name !== itemName);
                 setCookie('checklist', JSON.stringify(updatedChecklist), 7);
             }
+            console.log(10);
         }
         
         function clearAllCookies() {
