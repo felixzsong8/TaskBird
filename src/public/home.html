@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <script src="https://felixzsong8.github.io/TaskBird/src/public/frontendscript.js" defer></script>
     <style type="text/css">
@@ -259,137 +260,7 @@
             background-color: white;
             display:none;
         }
-        .wrapper{
-        width: 450px;
-        background: #fff;
-        border-radius: 0px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-        }
-        .wrapper header{
-        display: flex;
-        align-items: center;
-        padding: 25px 30px 10px;
-        justify-content: space-between;
-        }
-        header .icons{
-        display: flex;
-        }
-        header .icons span{
-        height: 38px;
-        width: 38px;
-        margin: 0 1px;
-        cursor: pointer;
-        color: #878787;
-        text-align: center;
-        line-height: 38px;
-        font-size: 1.9rem;
-        user-select: none;
-        border-radius: 50%;
-        }
-        .icons span:last-child{
-        margin-right: -10px;
-        }
-        header .icons span:hover{
-        background: #f2f2f2;
-        }
-        header .current-date{
-        font-size: 1.45rem;
-        font-weight: 500;
-        }
-        .calendar{
-        padding: 20px;
-        }
-        .calendar ul{
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;
-        text-align: center;
-        }
-        .calendar .days{
-        margin-bottom: 20px;
-        }
-        .calendar li{
-        color: #333;
-        width: calc(100% / 7);
-        font-size: 1.07rem;
-        }
-        .calendar .weeks li{
-        font-weight: 500;
-        cursor: default;
-        }
-        .calendar .days li{
-        z-index: 1;
-        cursor: pointer;
-        position: relative;
-        margin-top: 30px;
-        }
-        .days li.inactive{
-        color: #aaa;
-        }
-        .days li.active{
-        color: #fff;
-        }
-        .days li::before{
-        position: absolute;
-        content: "";
-        left: 50%;
-        top: 50%;
-        height: 40px;
-        width: 40px;
-        z-index: -1;
-        border-radius: 0;
-        transform: translate(-50%, -50%);
-        }
-        .days li.active::before{
-        background: rgb(202, 140, 70);
-        }
-        .days li:not(.active):hover::before{
-        background: #f2f2f2;
-        }
-
-        .event-details {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 400px;
-        padding: 10px;
-        background-color: white;
-        border: 1px solid #ccc;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        #eventList {
-        list-style: none;
-        text-align: left;
-        padding: 0;
-        margin: 0;
-        }
-
-        #eventList li {
-        margin-bottom: 5px;
-        width: 300px
         
-        }
-
-        .event-dot {
-        display: inline-block;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background-color: orange;
-        position: absolute;
-        top: 2px;
-        right: 2px;
-        }
-
-        button {
-        padding: 10px;
-        background-color: #e74c3c; 
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        }
 
 
     </style> 
