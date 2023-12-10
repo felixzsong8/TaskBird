@@ -10,12 +10,12 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            font-family: "Monaco", monospace;
-            background-color: white;
+            font-family: "Monaco",monospace; /* Added a default font */
+            background-color: white; /* Set the entire background color */
         }
 
         .logoBox {
-            height: 80px;
+            height: 20%;
         }
 
         .logo {
@@ -118,41 +118,26 @@
         }
 
         #checklistWrapper {
-              position: relative;
-            border: 2px solid #000;
-            padding: 10px;
-            min-height: 200px;
-            margin: 20px 40px 20px 100px; /* Adjusted margin to match the width of the navigation bar */
-            width: calc(100% - 200px); /* Adjusted width to fill the remaining space */
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            border-radius: 15px; /* Rounded edges */
-        }
+    border: 2px solid #000;
+    padding: 10px;
+    min-height: 200px;
+    margin: 20px 40px 20px 100px; /* Adjusted margin to match the width of the navigation bar */
+    width: calc(100% - 200px); /* Adjusted width to fill the remaining space */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px; /* Rounded edges */
+}
 
 
-        .task {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #000;
-            border-radius: 10px;
-            
-        }
-
-  .clear-tasks {
-    position: absolute;
-    top: 10px;  /* Adjust as needed */
-    right: 10px; /* Adjust as needed */
-    padding: 5px 10px; /* Adjust padding as needed */
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #DCD0FF;
-    border: none;
-    outline: none;
-    width: auto; /* Adjust or remove width as needed */
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #000;
+    border-radius: 10px;
 }
 
 /* General style for buttons */
@@ -253,7 +238,6 @@ button:hover {
         }
 
         #doneListWrapper {
-              position: relative;
     border: 2px solid #000;
     padding: 10px;
     margin: 20px 40px 20px 100px; /* Adjusted margin to match the width of the navigation bar */
@@ -289,13 +273,9 @@ button:hover {
         <div class="addTaskBtn"><button id="addTaskBtn">Add Task</button></div>
         <div id="checklistWrapper">
             <h2>TODO List</h2>
-            <button class="clear-tasks" onclick="clearList('todo')">CLEAR TASKS</button>
-            
         </div>
-        
         <div id="doneListWrapper">
             <h2>Completed Tasks</h2>
-            <button class="clear-tasks" onclick="clearList('done')">CLEAR TASKS</button>
         </div>
     </div>
 
@@ -331,10 +311,10 @@ button:hover {
     document.addEventListener('DOMContentLoaded', function () {
         const addTaskBtn = document.getElementById('addTaskBtn');
         const checklistWrapper = document.getElementById('checklistWrapper');
+        const donelistWrapper = document.getElementById('doneListWrapper');
         const taskModal = document.getElementById('taskModal');
         const closeBtn = document.querySelector('.close');
         const addTask = document.getElementById('addTask');
-
 
         addTaskBtn.addEventListener('click', () => {
             taskModal.style.display = 'block';
@@ -393,9 +373,15 @@ button:hover {
                 const doneListWrapper = document.getElementById('doneListWrapper');
                 newTask.removeChild(buttonContainer); // Remove the buttons
                 doneListWrapper.appendChild(newTask); // Move the task to the DoneList
+                //add to done list cookie
             });
             buttonContainer.appendChild(doneButton);
 
+            const addToCalButton = document.createElement('button');
+            addToCalButton.innerText = 'ADD TO CAL';
+            addToCalButton.className = 'task-button';
+            addToCalButton.addEventListener('click', () => alert('Hello from ADD TO CAL'));
+            buttonContainer.appendChild(addToCalButton);
 
             newTask.appendChild(buttonContainer);
             taskModal.style.display = 'none';
@@ -407,13 +393,15 @@ button:hover {
                 urgency: item.dataset.urgency,
                 backgroundColor: item.style.backgroundColor
             }));
-            setCookie('checklist', JSON.stringify(checklistData), 7);
             saveChecklistToCookies();
+            saveDonelistToCookies();
+            console.log(document.cookie);
 
         });
 
         
         loadChecklistFromCookies();
+        loadDonelistFromCookies();
         const urgencyButtons = document.querySelectorAll('.urgencyBtn');
         urgencyButtons.forEach((btn) => {
             btn.addEventListener('click', () => {
@@ -424,19 +412,6 @@ button:hover {
             });
         });
     });
-
- function clearList(listType) {
-    let listWrapper;
-    if (listType === 'todo') {
-        listWrapper = document.getElementById('checklistWrapper');
-    } else if (listType === 'done') {
-        listWrapper = document.getElementById('doneListWrapper');
-    }
-
-    const tasks = listWrapper.querySelectorAll('.task');
-    tasks.forEach(task => task.remove());
-}
-}
     </script>
 
     <script>
@@ -479,10 +454,46 @@ button:hover {
                 backgroundColor: item.style.backgroundColor
             }));
             setCookie('checklist', JSON.stringify(checklistData), 7);
-            console.log(checklistData);
+        }
+        
+        function saveDonelistToCookies() {
+            const donelistWrapper = document.getElementById('doneListWrapper');
+            const donelistItems = Array.from(donelistWrapper.getElementsByClassName('task'));
+            const donelistData = donelistItems.map(item => ({
+                name: item.querySelector('strong').innerText,
+                duration: item.querySelector('div').innerText,
+                urgency: item.dataset.urgency,
+                backgroundColor: item.style.backgroundColor
+            }));
+            setCookie('donelist', JSON.stringify(donelistData), 7);
         }
 
         // Function to load checklist data from cookies
+        function loadDonelistFromCookies() {
+            const storedDonelist = getCookie('donelist');
+            if (storedDonelist) {
+                const donelistData = JSON.parse(storedDonelist);
+
+                donelistData.forEach(item => {
+                    const newTask = document.createElement('div');
+                    newTask.className = 'task';
+                    newTask.style.backgroundColor = item.backgroundColor;
+                    newTask.innerHTML = `<strong>${item.name}</strong> - Duration: ${item.duration}`;
+                    newTask.dataset.urgency = item.urgency;
+
+                    const buttonContainer = document.createElement('div');
+                    buttonContainer.className = 'button-container';
+
+                    // ... (Add buttons to buttonContainer) ...
+                    const doneListWrapper = document.getElementById('doneListWrapper');
+                    newTask.appendChild(buttonContainer);
+                    donelistWrapper.appendChild(newTask);
+
+                    newTask.appendChild(buttonContainer);
+                    taskModal.style.display = 'none';
+                });
+            }
+        }
         function loadChecklistFromCookies() {
             const storedChecklist = getCookie('checklist');
             if (storedChecklist) {
@@ -502,7 +513,6 @@ button:hover {
 
                     newTask.appendChild(buttonContainer);
                     checklistWrapper.appendChild(newTask);
-                    console.log(checklistWrapper);
                     const doneButton = document.createElement('button');
                     doneButton.innerText = 'DONE';
                     doneButton.className = 'task-button';
@@ -513,7 +523,11 @@ button:hover {
                     });
                     buttonContainer.appendChild(doneButton);
 
-       
+                    const addToCalButton = document.createElement('button');
+                    addToCalButton.innerText = 'ADD TO CAL';
+                    addToCalButton.className = 'task-button';
+                    addToCalButton.addEventListener('click', () => alert('Hello from ADD TO CAL'));
+                    buttonContainer.appendChild(addToCalButton);
 
                     newTask.appendChild(buttonContainer);
                     taskModal.style.display = 'none';
