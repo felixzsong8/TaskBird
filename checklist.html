@@ -373,7 +373,7 @@ button:hover {
                 donelistWrapper.appendChild(newTask); // Move the task to the DoneList
                 saveDonelistToCookies();
                 console.log(newTask);
-                removeDonelistItemFromCookies(document.querySelector('strong').innerText);
+                removeDonelistItemFromCookies(document.querySelector('task strong').innerText);
             });
             buttonContainer.appendChild(doneButton);
 
