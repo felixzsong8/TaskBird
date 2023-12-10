@@ -480,7 +480,7 @@ button:hover {
                     newTask.style.backgroundColor = item.backgroundColor;
                     newTask.innerHTML = `<strong>${item.name}</strong> - Duration: ${item.duration}`;
                     newTask.dataset.urgency = item.urgency;
-                
+                    const donelistWrapper = document.getElementById('doneListWrapper');
                     const buttonContainer = document.createElement('div');
                     buttonContainer.className = 'button-container';
                 
@@ -488,9 +488,8 @@ button:hover {
                     doneButton.innerText = 'DONE';
                     doneButton.className = 'task-button';
                     doneButton.addEventListener('click', () => {
-                        const doneListWrapper = document.getElementById('doneListWrapper');
                         newTask.removeChild(buttonContainer); // Remove the buttons
-                        doneListWrapper.appendChild(newTask); // Move the task to the DoneList
+                        donelistWrapper.appendChild(newTask); // Move the task to the DoneList
                         saveDonelistToCookies(); // Update cookies after moving the task
                     });
                     buttonContainer.appendChild(doneButton);
