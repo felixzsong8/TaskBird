@@ -213,7 +213,7 @@ app.get('/frontend', isAuthenticated, (req, res) => {
 });
 
 // Serve HTML page with frontend JavaScript for home
-app.get('/homescript', isAuthenticated, (req, res) => {
+app.get('/frontend', isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
