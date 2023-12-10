@@ -369,9 +369,8 @@ button:hover {
             doneButton.innerText = 'DONE';
             doneButton.className = 'task-button';
             doneButton.addEventListener('click', () => {
-                const doneListWrapper = document.getElementById('doneListWrapper');
                 newTask.removeChild(buttonContainer); // Remove the buttons
-                doneListWrapper.appendChild(newTask); // Move the task to the DoneList
+                donelistWrapper.appendChild(newTask); // Move the task to the DoneList
                 saveDonelistToCookies();
                 console.log(checklistWrapper)
                 console.log(donelistWrapper)
@@ -470,6 +469,7 @@ button:hover {
 
         // Function to load checklist data from cookies
         function loadDonelistFromCookies() {
+            console.log("saving done");
             const storedDonelist = getCookie('donelist');
             if (storedDonelist) {
                 const donelistData = JSON.parse(storedDonelist);
@@ -507,6 +507,7 @@ button:hover {
             }
         }
         function loadChecklistFromCookies() {
+            console.log("saving check");
             const storedChecklist = getCookie('checklist');
             if (storedChecklist) {
                 const checklistData = JSON.parse(storedChecklist);
