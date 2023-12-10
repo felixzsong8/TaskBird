@@ -115,8 +115,117 @@
         }
         .wrapper {
             position: absolute;
-            left: 80%;
+            left: 60%;
         }
+        /*Start of the weather section */
+        .weather {
+            background-color: #ff990062;
+            position: absolute;
+            left: 5%;
+            top: 5%;
+            width: 200px;
+            height: 300px;
+            margin: 20px auto 0;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .search {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .search input {
+            border: 0;
+            outline: 0;
+            background:rgb(194, 194, 194);
+            color: #555;
+            padding: 10px 15px;
+            border-radius: 30px;
+            flex: 1;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        .search button {
+            border: 0;
+            outline: 0;
+            background: #ebfffc;
+            border-radius: 50px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+        .search button img {
+            width: 15px;
+        }
+        .error {
+            text-align: left;
+            margin-left: 10px;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+        .display {
+            line-height: 0px;
+            display: none;
+        }
+        .display h1 {
+            font-size: 20px;
+            padding: 10px;
+        }
+        .display h2 {
+            font-size: 10px;
+        }
+        .weatherIcon {
+            width: 100px;
+            margin-top: 10px;
+        }
+        .details {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            margin-top: 20px;
+            font-size: 10px;
+        }
+        .col {
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+        .col img {
+            width: 30px;
+            margin-right: 10px;
+        }
+        .humidity, .wind {
+            font-size: 10px;
+            margin-top: 20px;
+        }
+        /*End of the weather section */
+        .motivation {
+            border: 2px solid #ff990062;
+            position: absolute;
+            top: 450px;
+            left: 5%;
+            width: 250px;
+            height: 250px;
+            padding: 10px;
+        }
+        #catContainer {
+            max-width: 100%; /* Ensure the container does not exceed its parent's width */
+            max-height: 100%; /* Ensure the container does not exceed its parent's height */
+            overflow: hidden; /* Hide any overflowing content */
+        }
+
+        #catImage {
+            width: 100%; /* Take up 100% of the container's width */
+            height: 200px; /* Take up 100% of the container's height */
+            object-fit: cover; /* Maintain the image's aspect ratio while covering the entire container */
+        }
+       #motivationalMessage {
+        z-index: 3;
+       }
         
        
         
