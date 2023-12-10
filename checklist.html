@@ -266,6 +266,7 @@ button:hover {
     <div class="mode">
         <button type="button" id="mode" onclick="changeColor()">Light Mode</button>
     </div>
+    <button id="clearCookiesBtn" onclick="clearAllCookies()">Clear Cookies</button>
     <div class="topPart"> 
         <h1>My Daily Checklist</h1>
         <p>Welcome to your checklist! Add events and see them in order of urgency.</p>
@@ -492,6 +493,14 @@ button:hover {
                     newTask.appendChild(buttonContainer);
                     taskModal.style.display = 'none';
                 });
+            }
+        }
+        function clearAllCookies() {
+            const cookies = document.cookie.split('; ');
+
+            for (const cookie of cookies) {
+                const [cookieName] = cookie.split('=');
+                document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
             }
         }
     </script>
