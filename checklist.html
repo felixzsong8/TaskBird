@@ -372,7 +372,8 @@ button:hover {
                 newTask.removeChild(buttonContainer); // Remove the buttons
                 donelistWrapper.appendChild(newTask); // Move the task to the DoneList
                 saveDonelistToCookies();
-                removeDonelistItemFromCookies(item.name);
+                console.log(newTask);
+                removeDonelistItemFromCookies(newTask);
             });
             buttonContainer.appendChild(doneButton);
 
