@@ -372,8 +372,7 @@ button:hover {
                 newTask.removeChild(buttonContainer); // Remove the buttons
                 donelistWrapper.appendChild(newTask); // Move the task to the DoneList
                 saveDonelistToCookies();
-                console.log(checklistWrapper)
-                console.log(donelistWrapper)
+                removeDonelistItemFromCookies(item.name);
             });
             buttonContainer.appendChild(doneButton);
 
@@ -482,16 +481,7 @@ button:hover {
                     newTask.dataset.urgency = item.urgency;
                     const donelistWrapper = document.getElementById('doneListWrapper');
                     const buttonContainer = document.createElement('div');
-                    buttonContainer.className = 'button-container';
-                
-                    const doneButton = document.createElement('button');
-                    doneButton.className = 'task-button';
-                    doneButton.addEventListener('click', () => {
-                        newTask.removeChild(buttonContainer); // Remove the buttons
-                        donelistWrapper.appendChild(newTask); // Move the task to the DoneList
-                        removeDonelistItemFromCookies(item.name);
-                    });
-                    buttonContainer.appendChild(doneButton);
+            
                 
                     newTask.appendChild(buttonContainer);
                     donelistWrapper.appendChild(newTask);
