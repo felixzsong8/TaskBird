@@ -540,13 +540,13 @@ button:hover {
             }
         }
         function removeDonelistItemFromCookies(itemName) {
-            const storedChecklist = getCookie('checklist');
-            if (storedChecklist) {
-                const checklistData = JSON.parse(storedChecklist);
-                const updatedChecklist = checklistData.filter(item => item.name !== itemName);
-                setCookie('checklist', JSON.stringify(updatedChecklist), 7);
-            }
-        }
+    const storedDonelist = getCookie('donelist');
+    if (storedDonelist) {
+        const donelistData = JSON.parse(storedDonelist);
+        const updatedDonelist = donelistData.filter(item => item.name !== itemName);
+        setCookie('donelist', JSON.stringify(updatedDonelist), 7);
+    }
+}
         
         function clearAllCookies() {
             const cookies = document.cookie.split('; ');
