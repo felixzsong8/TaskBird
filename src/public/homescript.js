@@ -8,6 +8,7 @@ let currYear = date.getFullYear();
 let currMonth = date.getMonth();
 const BASE_URL = window.location.origin;
 console.log(BASE_URL);
+console.log(12);
 
 const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
