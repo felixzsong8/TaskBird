@@ -123,6 +123,7 @@ app.get('/get_events', isAuthenticated, async (req, res) => {
         // Log the events to the console
         //console.log(`Fetched ${events.data.items.length} events:`, events.data.items);
         res.header("Access-Control-Allow-Origin", `${BASE_URL}/frontend`);
+        res.header("Access-Control-Allow-Origin", `${BASE_URL}/home`);
         res.json(events.data.items);
     } catch (error) {
         console.error('Error fetching events:', error);
