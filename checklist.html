@@ -393,11 +393,13 @@ button:hover {
                 backgroundColor: item.style.backgroundColor
             }));
             saveChecklistToCookies();
+            saveDonelistToCookies();
 
         });
 
         
         loadChecklistFromCookies();
+        loadDonelistFromCookies();
         const urgencyButtons = document.querySelectorAll('.urgencyBtn');
         urgencyButtons.forEach((btn) => {
             btn.addEventListener('click', () => {
@@ -466,7 +468,7 @@ button:hover {
         }
 
         // Function to load checklist data from cookies
-        function loadChecklistFromCookies() {
+        function loadDonelistFromCookies() {
             const storedChecklist = getCookie('checklist');
             if (storedChecklist) {
                 const checklistData = JSON.parse(storedChecklist);
