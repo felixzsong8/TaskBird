@@ -141,20 +141,15 @@
             
         }
 
-        .clear-tasks {
-           padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #DCD0FF;
-            border: none;
-            outline: none;
-
-
-            position: absolute;
-            top: 2%;
-            margin-left: 90%;
-        }
+      .clear-tasks {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #DCD0FF;
+    border: none;
+    outline: none;
+}
 
 /* General style for buttons */
 button {
@@ -290,7 +285,9 @@ button:hover {
         <div id="checklistWrapper">
             <h2>TODO List</h2>
             <button class="clear-tasks" onclick="clearList('todo')">CLEAR TASKS</button>
+            
         </div>
+        
         <div id="doneListWrapper">
             <h2>Completed Tasks</h2>
             <button class="clear-tasks" onclick="clearList('done')">CLEAR TASKS</button>
@@ -422,7 +419,7 @@ button:hover {
         });
     });
 
-   function clearList(listType) {
+ function clearList(listType) {
     let listWrapper;
     if (listType === 'todo') {
         listWrapper = document.getElementById('checklistWrapper');
@@ -430,9 +427,9 @@ button:hover {
         listWrapper = document.getElementById('doneListWrapper');
     }
 
-    // Remove all task elements but leave the CLEAR TASKS button
     const tasks = listWrapper.querySelectorAll('.task');
     tasks.forEach(task => task.remove());
+}
 }
     </script>
 
