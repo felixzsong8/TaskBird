@@ -97,7 +97,8 @@ body{
   background: rgb(194, 194, 194);
 }
 .wrapper{
-  width: 450px;
+  width: 40%;
+  left: 45%;
   background: #fff;
   border-radius: 0px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.12);
@@ -135,7 +136,6 @@ header .current-date{
 }
 .calendar{
   padding: 20px;
-  left: 45%;
 }
 .calendar ul{
   display: flex;
