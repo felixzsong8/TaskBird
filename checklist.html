@@ -530,9 +530,10 @@ button:hover {
         }
         function removeDonelistItemFromCookies(itemName) {
             const storedChecklist = getCookie('checklist');
+            console.log(itemName)
             if (storedChecklist) {
                 const checklistData = JSON.parse(storedChecklist);
-                const updatedChecklist = checklistData.filter(item => item.name !== itemName);
+                const updatedChecklist = checklistData.filter(item => item.name == itemName);
                 setCookie('checklist', JSON.stringify(updatedChecklist), 7);
                 console.log(updatedChecklist);
             }
