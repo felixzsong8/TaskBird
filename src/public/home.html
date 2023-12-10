@@ -9,6 +9,111 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
         <script src="frontendscript.js" defer></script>
+        <style type="text/css">
+            html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Monaco",monospace; /* Added a default font */
+            background-color: white; /* Set the entire background color */
+            display: flex; /* Use flex to align navbar and main */
+        }
+
+        .logoBox {
+            height: 80px;
+        }
+
+        .logo {
+            position: absolute;
+            width: 99%;
+            height: 130px;
+            left: 0;
+            top: 0;
+            display: block;
+        }
+
+        .mode {
+            position: absolute;
+            top: 2%;
+            margin-left: 90%;
+            margin-bottom: -5%;
+            z-index: 3;
+        }
+
+        .mode button:hover {
+            color: white;
+            background-color: #DCD0FF;
+        }
+
+        .mode button {
+            margin-top: 2%;
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            background-color: #ffc800;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .nav {
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1; /* Update the z-index */
+            top: 0;
+            left: 0;
+            background-color: #DCD0FF;
+            overflow-x: hidden;
+            padding-top: 16px;
+            line-height: 10px;
+        }
+
+
+        .nav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 15px;
+            color: #000000;
+            display: block;
+        }
+
+        .pages {
+            height: 100%;
+            width: 160px;
+            position: relative;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #DCD0FF;
+            overflow-x: hidden;
+            padding-top: 16px;
+        }
+
+        .pages a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #000000;
+            display: block;
+        }
+
+        .pages a:hover {
+            color: #ffd036;
+        }
+
+        .main {
+            position: absolute;
+            right: 0%;
+            width: 90%;
+            height: 100%;
+            background-color: #DCD0FF;
+            overflow: auto; /* Add overflow for content scrolling */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: Add a box shadow for a visual separation */
+        }
+        </style>
     </head>
 
     <body>
