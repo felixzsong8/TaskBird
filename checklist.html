@@ -395,28 +395,7 @@ button:hover {
 
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const storedChecklist = getCookie('checklist');
-            if (storedChecklist) {
-                const checklistData = JSON.parse(storedChecklist);
-
-                checklistData.forEach(item => {
-                    const newTask = document.createElement('div');
-                    newTask.className = 'task';
-                    newTask.style.backgroundColor = item.backgroundColor;
-                    newTask.innerHTML = `<strong>${item.name}</strong> - Duration: ${item.duration}`;
-                    newTask.dataset.urgency = item.urgency;
-
-                    const buttonContainer = document.createElement('div');
-                    buttonContainer.className = 'button-container';
-
-                    // ... Add buttons to buttonContainer ...
-
-                    newTask.appendChild(buttonContainer);
-                    checklistWrapper.appendChild(newTask);
-                });
-            }
-        });
+        
         loadChecklistFromCookies();
         const urgencyButtons = document.querySelectorAll('.urgencyBtn');
         urgencyButtons.forEach((btn) => {
