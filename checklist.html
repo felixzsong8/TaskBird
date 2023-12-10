@@ -457,7 +457,7 @@ button:hover {
         }
         
         function saveDonelistToCookies() {
-            const doneListWrapper = document.getElementById('doneListWrapper');
+            const donelistWrapper = document.getElementById('doneListWrapper');
             const DonelistItems = Array.from(donelistWrapper.getElementsByClassName('task'));
             const donelistData = donelistItems.map(item => ({
                 name: item.querySelector('strong').innerText,
