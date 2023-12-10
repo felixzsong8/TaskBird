@@ -250,6 +250,7 @@ header .current-date{
   background-color: #4CAF50;
   color: white;
   cursor: pointer;
+  margin-left: 5px;
 }
 
 .event-form button:hover {
@@ -263,4 +264,8 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
 }
