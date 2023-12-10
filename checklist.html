@@ -311,6 +311,7 @@ button:hover {
     document.addEventListener('DOMContentLoaded', function () {
         const addTaskBtn = document.getElementById('addTaskBtn');
         const checklistWrapper = document.getElementById('checklistWrapper');
+        const donelistWrapper = document.getElementById('doneListWrapper');
         const taskModal = document.getElementById('taskModal');
         const closeBtn = document.querySelector('.close');
         const addTask = document.getElementById('addTask');
@@ -453,7 +454,6 @@ button:hover {
                 backgroundColor: item.style.backgroundColor
             }));
             setCookie('checklist', JSON.stringify(checklistData), 7);
-            console.log(checklistData);
         }
         
         function saveDonelistToCookies() {
@@ -465,7 +465,6 @@ button:hover {
                 backgroundColor: item.style.backgroundColor
             }));
             setCookie('donelist', JSON.stringify(donelistData), 7);
-            console.log(donelistData);
         }
 
         // Function to load checklist data from cookies
