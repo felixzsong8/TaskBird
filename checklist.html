@@ -422,15 +422,18 @@ button:hover {
         });
     });
 
-    function clearList(listType) {
-            if (listType === 'todo') {
-                // Clear the TODO List
-                document.getElementById('checklistWrapper').innerHTML = '<h2>TODO List</h2>';
-            } else if (listType === 'done') {
-                // Clear the Done List
-                document.getElementById('doneListWrapper').innerHTML = '<h2>Completed Tasks</h2>';
-            }
-        }
+   function clearList(listType) {
+    let listWrapper;
+    if (listType === 'todo') {
+        listWrapper = document.getElementById('checklistWrapper');
+    } else if (listType === 'done') {
+        listWrapper = document.getElementById('doneListWrapper');
+    }
+
+    // Remove all task elements but leave the CLEAR TASKS button
+    const tasks = listWrapper.querySelectorAll('.task');
+    tasks.forEach(task => task.remove());
+}
     </script>
 
     <script>
