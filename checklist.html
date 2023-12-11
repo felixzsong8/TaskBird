@@ -458,7 +458,7 @@ button:hover {
             const donelistItems = Array.from(donelistWrapper.getElementsByClassName('task'));
             const donelistData = donelistItems.map(item => ({
                 name: item.querySelector('strong').innerText,
-                //duration: item.querySelector('div').innerText,
+                duration: item.querySelector('div').innerText,
                 urgency: item.dataset.urgency,
                 backgroundColor: item.style.backgroundColor
             }));
