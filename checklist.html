@@ -352,6 +352,7 @@ button:hover {
             newTask.style.backgroundColor = urgencyColor;
             newTask.innerHTML = `<strong>${taskName}</strong> - Duration: ${duration} min`;
             newTask.dataset.urgency = urgency;
+            newTask.dataset.duration = duration
 
             let tasks = Array.from(checklistWrapper.getElementsByClassName('task'));
             let insertIndex = tasks.findIndex(task => parseInt(task.dataset.urgency) <= urgency);
