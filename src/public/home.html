@@ -546,7 +546,7 @@
         
         if (storedChecklist) {
             const checklistData = JSON.parse(storedChecklist);
-            checklistWrapper.innerHTML = "TODO LIST";
+            checklistWrapper.innerHTML = "TODO LIST<br>";
             checklistData.forEach(item => {
                 // Concatenate the HTML strings instead of overwriting
                 checklistWrapper.innerHTML += `
