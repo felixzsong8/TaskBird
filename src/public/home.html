@@ -543,13 +543,18 @@
         //Use the load function for checklist
         const storedChecklist = getCookie('checklist');
         const checklistWrapper = document.getElementById('checklist');
+        
         if (storedChecklist) {
             const checklistData = JSON.parse(storedChecklist);
+            checklistWrapper.innerHTML = "";
             checklistData.forEach(item => {
-                checklistWrapper.innerHTML += 'task';
-                checklistWrapper.innerHTML = `<strong>${item.name}</strong> - Duration: ${item.duration} min`;
-                checklistWrapper.innerHTML = item.urgency + '\n';
+                // Concatenate the HTML strings instead of overwriting
+                checklistWrapper.innerHTML += `
+                    <strong>${item.name}</strong> - Duration: ${item.duration} min
+                    ${item.urgency}<br>`;
             });
+        }else{
+            checklistWrapper.innerHTML += "No tasks in TODO list";
         }
         
         function getCookie(name) {
@@ -562,7 +567,6 @@
             }
             return null;
         }
-
 
     </script>
     </body>
