@@ -474,7 +474,7 @@ button:hover {
                     newTask.style.backgroundColor = item.backgroundColor;
                     newTask.innerHTML = `<strong>${item.name}</strong> - Duration: ${item.duration} min`;
                     newTask.dataset.urgency = item.urgency;
-                    newTask.dataset.duration = duration
+                    newTask.dataset.duration = item.duration
                     const donelistWrapper = document.getElementById('doneListWrapper');
                     const buttonContainer = document.createElement('div');
             
