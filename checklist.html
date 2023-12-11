@@ -376,7 +376,7 @@ button:hover {
                 removeDonelistItemFromCookies(taskName);
             });
             buttonContainer.appendChild(doneButton);
-
+            
             const addToCalButton = document.createElement('button');
             addToCalButton.innerText = 'ADD TO CAL';
             addToCalButton.className = 'task-button';
@@ -397,6 +397,7 @@ button:hover {
             console.log(document.cookie);
 
         });
+        
         loadChecklistFromCookies();
         loadDonelistFromCookies();
         const urgencyButtons = document.querySelectorAll('.urgencyBtn');
@@ -458,7 +459,7 @@ button:hover {
             const donelistItems = Array.from(donelistWrapper.getElementsByClassName('task'));
             const donelistData = donelistItems.map(item => ({
                 name: item.querySelector('strong').innerText,
-                //duration: item.querySelector('div').innerText,
+                duration: item.querySelector('div').innerText,
                 urgency: item.dataset.urgency,
                 backgroundColor: item.style.backgroundColor
             }));
@@ -467,7 +468,6 @@ button:hover {
 
         // Function to load checklist data from cookies
         function loadDonelistFromCookies() {
-            console.log("saving done");
             const storedDonelist = getCookie('donelist');
             if (storedDonelist) {
                 const donelistData = JSON.parse(storedDonelist);
