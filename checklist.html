@@ -498,17 +498,15 @@ button:hover {
                     const buttonContainer = document.createElement('div');
                     buttonContainer.className = 'button-container';
 
-                    // ... (Add buttons to buttonContainer) ...
-
                     newTask.appendChild(buttonContainer);
                     checklistWrapper.appendChild(newTask);
                     const doneButton = document.createElement('button');
                     doneButton.innerText = 'DONE';
                     doneButton.className = 'task-button';
                     doneButton.addEventListener('click', () => {
-                        const doneListWrapper = document.getElementById('doneListWrapper');
+                        const donelistWrapper = document.getElementById('doneListWrapper');
                         newTask.removeChild(buttonContainer); // Remove the buttons
-                        doneListWrapper.appendChild(newTask); // Move the task to the DoneList
+                        donelistWrapper.appendChild(newTask); // Move the task to the DoneList
                         saveDonelistToCookies();
                         removeDonelistItemFromCookies(taskName);
                     });
