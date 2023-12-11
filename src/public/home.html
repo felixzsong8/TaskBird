@@ -546,15 +546,15 @@
         
         if (storedChecklist) {
             const checklistData = JSON.parse(storedChecklist);
-            checklistWrapper.innerHTML = "";
+            checklistWrapper.innerHTML = "TODO LIST";
             checklistData.forEach(item => {
                 // Concatenate the HTML strings instead of overwriting
                 checklistWrapper.innerHTML += `
-                    <strong>${item.name}</strong> - Duration: ${item.duration} min
-                    ${item.urgency}<br>`;
+                    <strong>${item.name}</strong> - Duration: ${item.duration} min,
+                    Urgency Level: ${item.urgency}<br>`;
             });
         }else{
-            checklistWrapper.innerHTML += "No tasks in TODO list";
+            checklistWrapper.innerHTML = "No tasks in TODO list";
         }
         
         function getCookie(name) {
