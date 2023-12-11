@@ -484,7 +484,6 @@ button:hover {
             }
         }
         function loadChecklistFromCookies() {
-            console.log("saving check");
             const storedChecklist = getCookie('checklist');
             if (storedChecklist) {
                 const checklistData = JSON.parse(storedChecklist);
@@ -527,9 +526,8 @@ button:hover {
                 const checklistData = JSON.parse(storedChecklist);
                 const updatedChecklist = checklistData.filter(item => item.name !== itemName);
                 setCookie('checklist', JSON.stringify(updatedChecklist), 7);
-                console.log(updatedChecklist);
             }
-            console.log(storedChecklist);
+            console.log(getCookie('checklist'));
             console.log(getCookie('donelist'));
         }
         
