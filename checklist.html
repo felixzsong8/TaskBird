@@ -377,12 +377,6 @@ button:hover {
                 removeDonelistItemFromCookies(taskName);
             });
             buttonContainer.appendChild(doneButton);
-            
-            const addToCalButton = document.createElement('button');
-            addToCalButton.innerText = 'ADD TO CAL';
-            addToCalButton.className = 'task-button';
-            addToCalButton.addEventListener('click', () => alert('Hello from ADD TO CAL'));
-            buttonContainer.appendChild(addToCalButton);
 
             newTask.appendChild(buttonContainer);
             taskModal.style.display = 'none';
@@ -390,7 +384,7 @@ button:hover {
             const checklistItems = Array.from(checklistWrapper.getElementsByClassName('task'));
             const checklistData = checklistItems.map(item => ({
                 name: item.querySelector('strong').innerText,
-                duration: item.querySelector('div').innerText,
+                duration: item.dataset.duration,
                 urgency: item.dataset.urgency,
                 backgroundColor: item.style.backgroundColor
             }));
@@ -516,14 +510,10 @@ button:hover {
                         const doneListWrapper = document.getElementById('doneListWrapper');
                         newTask.removeChild(buttonContainer); // Remove the buttons
                         doneListWrapper.appendChild(newTask); // Move the task to the DoneList
+                        saveDonelistToCookies();
+                        removeDonelistItemFromCookies(taskName);
                     });
                     buttonContainer.appendChild(doneButton);
-
-                    const addToCalButton = document.createElement('button');
-                    addToCalButton.innerText = 'ADD TO CAL';
-                    addToCalButton.className = 'task-button';
-                    addToCalButton.addEventListener('click', () => alert('Hello from ADD TO CAL'));
-                    buttonContainer.appendChild(addToCalButton);
 
                     newTask.appendChild(buttonContainer);
                     taskModal.style.display = 'none';
