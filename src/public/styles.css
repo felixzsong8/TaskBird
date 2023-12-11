@@ -223,7 +223,7 @@ header .current-date{
 
 .event-form {
   position: fixed;
-  bottom: 25%;
+  top: 25%;
   right: 2%;
   background: #fff;
   padding: 20px;
