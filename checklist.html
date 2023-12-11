@@ -508,7 +508,7 @@ button:hover {
                         newTask.removeChild(buttonContainer); // Remove the buttons
                         donelistWrapper.appendChild(newTask); // Move the task to the DoneList
                         saveDonelistToCookies();
-                        removeDonelistItemFromCookies(taskName);
+                        removeDonelistItemFromCookies(item.name);
                     });
                     buttonContainer.appendChild(doneButton);
 
