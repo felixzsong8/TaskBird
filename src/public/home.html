@@ -395,13 +395,14 @@
             
         </div>
         </div>
-        <div class="ltg" id="ltg">
+        <div class="checklist" id="checklist">
             Long term goals
         </div>
         
     </div>
         
         <script>
+        console.log(document.cookie)
         //Script to work for the Date
         /*var currentDate = new Date();
         dateContainer = document.getElementById("date");
@@ -415,7 +416,7 @@
         var weatherBox = document.getElementById("weather");
         var todayBox = document.getElementById("today");
         var calendar = document.getElementById("calendarBox");
-        var ltgBox = document.getElementById("ltg");
+        var checklist = document.getElementById("checklist");
         var motivation = document.getElementById("motivation");
         const boxes = document.querySelectorAll(".box");
         main.style.backgroundColor = "white";
@@ -431,7 +432,7 @@
                 todayBox.style.backgroundColor = "#3a3b3b";
                 todayBox.style.color = "black";
                 calendar.style.backgroundColor = "#3a3b3b";
-                ltgBox.style.backgroundColor = "#3a3b3b";
+                checklist.style.backgroundColor = "#3a3b3b";
                 motivation.style.backgroundColor = "#3a3b3b";
                /* boxes.forEach(function(box){
                     const boxSection = box.getAttribute("section");
@@ -448,7 +449,7 @@
                 todayBox.style.backgroundColor = "white";
                 todayBox.style.color = "black";
                 calendar.style.backgroundColor = "white";
-                ltgBox.style.backgroundColor = "white";
+                checklist.style.backgroundColor = "white";
                 document.body.style.backgroundColor = "white";
                 motivation.style.backgroundColor = "white";
                 /*boxes.forEach(function(box){
