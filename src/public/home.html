@@ -541,40 +541,45 @@
         fetchMotivationalData();
 
         //Use the load function for checklist
-        loadChecklistFromCookies()
+        loadChecklistFromCookies();
+
         function loadChecklistFromCookies() {
             const storedChecklist = getCookie('checklist');
+            const checklistWrapper = document.getElementById('checklist'); // Get the checklist div
+        
             if (storedChecklist) {
                 const checklistData = JSON.parse(storedChecklist);
-
+        
                 checklistData.forEach(item => {
                     const newTask = document.createElement('div');
                     newTask.className = 'task';
                     newTask.style.backgroundColor = item.backgroundColor;
                     newTask.innerHTML = `<strong>${item.name}</strong> - Duration: ${item.duration} min`;
                     newTask.dataset.urgency = item.urgency;
-                    newTask.dataset.duration = item.duration
-
+                    newTask.dataset.duration = item.duration;
+        
                     const buttonContainer = document.createElement('div');
                     buttonContainer.className = 'button-container';
-
+        
                     newTask.appendChild(buttonContainer);
-                    checklistWrapper.appendChild(newTask);
+                    checklistWrapper.appendChild(newTask); // Append the newTask to the checklist div
+        
                     const doneButton = document.createElement('button');
                     doneButton.innerText = 'DONE';
                     doneButton.className = 'task-button';
                     doneButton.addEventListener('click', () => {
-                        const donelistWrapper = document.getElementById('doneListWrapper');
+                        const doneListWrapper = document.getElementById('doneListWrapper');
                         newTask.removeChild(buttonContainer); // Remove the buttons
-                        donelistWrapper.appendChild(newTask); // Move the task to the DoneList
+                        doneListWrapper.appendChild(newTask); // Move the task to the DoneList
                     });
                     buttonContainer.appendChild(doneButton);
-
+        
                     newTask.appendChild(buttonContainer);
-                    taskModal.style.display = 'none';
+                    // taskModal.style.display = 'none'; // Commented this line out as taskModal is not defined in the provided code
                 });
             }
         }
+        
         function getCookie(name) {
             const cookies = document.cookie.split('; ');
             for (const cookie of cookies) {
@@ -585,6 +590,7 @@
             }
             return null;
         }
+
 
     </script>
     </body>
