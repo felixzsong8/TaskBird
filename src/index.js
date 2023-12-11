@@ -96,7 +96,7 @@ app.get('/check_taskbird_calendar', isAuthenticated, async (req, res) => {
         }
 
         req.session.taskBirdCalendarId = taskBirdCalendar.id; // Store TaskBird calendar ID in session
-        res.redirect('/home');
+        res.redirect('/loading.html');
     } catch (error) {
         console.error('Error checking TaskBird calendar:', error);
         res.status(500).send('Failed to check TaskBird calendar');
