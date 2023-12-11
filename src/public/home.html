@@ -541,43 +541,14 @@
         fetchMotivationalData();
 
         //Use the load function for checklist
-        loadChecklistFromCookies();
-
-        function loadChecklistFromCookies() {
-            const storedChecklist = getCookie('checklist');
-            const checklistWrapper = document.getElementById('checklist'); // Get the checklist div
-        
-            if (storedChecklist) {
-                const checklistData = JSON.parse(storedChecklist);
-        
-                checklistData.forEach(item => {
-                    const newTask = document.createElement('div');
-                    newTask.className = 'task';
-                    newTask.style.backgroundColor = item.backgroundColor;
-                    newTask.innerHTML = `<strong>${item.name}</strong> - Duration: ${item.duration} min`;
-                    newTask.dataset.urgency = item.urgency;
-                    newTask.dataset.duration = item.duration;
-        
-                    const buttonContainer = document.createElement('div');
-                    buttonContainer.className = 'button-container';
-        
-                    newTask.appendChild(buttonContainer);
-                    checklistWrapper.appendChild(newTask); // Append the newTask to the checklist div
-        
-                    const doneButton = document.createElement('button');
-                    doneButton.innerText = 'DONE';
-                    doneButton.className = 'task-button';
-                    doneButton.addEventListener('click', () => {
-                        const doneListWrapper = document.getElementById('doneListWrapper');
-                        newTask.removeChild(buttonContainer); // Remove the buttons
-                        doneListWrapper.appendChild(newTask); // Move the task to the DoneList
-                    });
-                    buttonContainer.appendChild(doneButton);
-        
-                    newTask.appendChild(buttonContainer);
-                });
-            }
-        }
+        const storedChecklist = getCookie('checklist');
+        const checklistWrapper = document.getElementById('checklist');
+        if (storedChecklist) {
+            const checklistData = JSON.parse(storedChecklist);
+            checklistData.forEach(item => {
+                checklistWrapper.innerHTML += 'task';
+                checklistWrapper.innerHTML = `<strong>${item.name}</strong> - Duration: ${item.duration} min`;
+                checklistWrapper.innerHTML = item.urgency + '\n';
         
         function getCookie(name) {
             const cookies = document.cookie.split('; ');
