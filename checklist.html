@@ -263,7 +263,7 @@ button:hover {
         </div>
     </div>
     <div class="mode">
-        <button type="button" id="mode" onclick="changeColor()">Light Mode</button>
+        <!--button type="button" id="mode" onclick="changeColor()">Light Mode</button-->
         <button id="clearCookiesBtn" onclick="clearAllCookies()">Clear Cookies</button>
     </div>
     <div class="topPart"> 
@@ -314,6 +314,7 @@ button:hover {
         const taskModal = document.getElementById('taskModal');
         const closeBtn = document.querySelector('.close');
         const addTask = document.getElementById('addTask');
+
 
         addTaskBtn.addEventListener('click', () => {
             taskModal.style.display = 'block';
@@ -373,7 +374,6 @@ button:hover {
                 newTask.removeChild(buttonContainer); // Remove the buttons
                 donelistWrapper.appendChild(newTask); // Move the task to the DoneList
                 saveDonelistToCookies();
-                console.log(newTask);
                 removeDonelistItemFromCookies(taskName);
             });
             buttonContainer.appendChild(doneButton);
@@ -392,7 +392,8 @@ button:hover {
             console.log(document.cookie);
 
         });
-        
+        console.log(getCookies('checklist')
+        console.log(getCookies('donelist')            
         loadChecklistFromCookies();
         loadDonelistFromCookies();
         const urgencyButtons = document.querySelectorAll('.urgencyBtn');
@@ -452,7 +453,6 @@ button:hover {
         function saveDonelistToCookies() {
             const donelistWrapper = document.getElementById('doneListWrapper');
             const donelistItems = Array.from(donelistWrapper.getElementsByClassName('task'));
-            console.log(donelistItems);
             const donelistData = donelistItems.map(item => ({
                 name: item.querySelector('strong').innerText,
                 duration: item.dataset.duration,
