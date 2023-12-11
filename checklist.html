@@ -461,7 +461,7 @@ button:hover {
             console.log(donelistItems);
             const donelistData = donelistItems.map(item => ({
                 name: item.querySelector('strong').innerText,
-                duration: item.querySelector('div').innerText,
+                duration: item.dataset.duration,
                 urgency: item.dataset.urgency,
                 backgroundColor: item.style.backgroundColor
             }));
