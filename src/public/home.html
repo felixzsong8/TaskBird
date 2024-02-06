@@ -152,15 +152,28 @@
         }
         /*Start of the weather section */
         .weather {
+            overflow-x: hidden;
             background-color: #ff990062;
             position: absolute;
             left: 5%;
-            top: 5%;
-            width: 19%;
+            top: 10%;
+            width: 0%; /* Set initial width to 0 */
             height: 40%;
             margin: 20px auto 0;
-            padding: 20px;
             text-align: center;
+            transition: width 0.5s ease; /* Add a transition effect for width change */
+        }
+        .buttonBar {
+            position: absolute;
+            width: 400px;
+            left: 5%;
+            top: 2%;
+
+        }
+        #toggleWeather, #toggleCat {
+            width: 100px;
+            background-color: #ffc800;
+            color: black;
         }
         .search {
             width: 80%;
@@ -239,13 +252,15 @@
         }
         /*End of the weather section */
         .motivation {
-            border: 2px solid #ff990062;
+            overflow-x: hidden;
+            border: 0px solid #ff990062;
             position: absolute;
-            bottom: 5%;
+            top: 10%;
             left: 5%;
-            width: 19%;
+            width: 0%;
             height: 35%;
-            padding: 10px;
+            transition: width 0.5s ease;
+            
         }
         #catContainer {
             max-width: 100%; /* Ensure the container does not exceed its parent's width */
@@ -318,89 +333,92 @@
             <button type="button" id="mode" onclick="changeColor()">Light Mode</button>
         </div>
         <div class="main" id="main">
-        <div class="weather" id="weather">
-           <div class="search">
-                <input type="text" placeholder="Enter city name" spellcheck="false">
-                <button><img src="https://felixzsong8.github.io/TaskBird/images/search.png"></button>
-           </div>
-           <div class="error">
-                <p>Invalid city name, try again</p>
-           </div>
-           <div class="display">
-                <img src="https://felixzsong8.github.io/TaskBird/images/rain.png" class="weatherIcon">
-                <h1 class="temp">22°c</h1>
-                <h2 class="city">New York</h2>
-                <div class="details">
-                    <div class="col">
-                        <img src="https://felixzsong8.github.io/TaskBird/images/humidity.png">
-                        <div>
-                            <p class="humidity">50%</p>
-                            <p>Humitidy</p>
+            <div class="buttonBar">
+                <button id="toggleWeather" onclick="toggleWeather()">Weather</button>
+                <button id="toggleCat" onclick="toggleCat()">cat</button>
+            </div>
+            <div class="weather" id="weather">
+            <div class="search">
+                    <input type="text" placeholder="Enter city name" spellcheck="false">
+                    <button><img src="https://felixzsong8.github.io/TaskBird/images/search.png"></button>
+            </div>
+            <div class="error">
+                    <p>Invalid city name, try again</p>
+            </div>
+            <div class="display">
+                    <img src="https://felixzsong8.github.io/TaskBird/images/rain.png" class="weatherIcon">
+                    <h1 class="temp">22°c</h1>
+                    <h2 class="city">New York</h2>
+                    <div class="details">
+                        <div class="col">
+                            <img src="https://felixzsong8.github.io/TaskBird/images/humidity.png">
+                            <div>
+                                <p class="humidity">50%</p>
+                                <p>Humitidy</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <img src="https://felixzsong8.github.io/TaskBird/images/wind.png">
+                            <div>
+                                <p class="wind">15 km/h</p>
+                                <p>Speed</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <img src="https://felixzsong8.github.io/TaskBird/images/wind.png">
-                        <div>
-                            <p class="wind">15 km/h</p>
-                            <p>Speed</p>
-                        </div>
+            </div>
+            </div>
+            <div class="motivation" id="motivation">
+                <div id="catContainer">
+                    <img src="" id="catImage" alt="Random Cat">
+                    <p id="motivationalMessage"></p>
+                </div>
+            </div>
+            <div id="today" class="today">
+                <div class ="date" id="date"></div>
+                <div class="event-details">
+                    <h2>Events</h2>
+                    <ul id="eventList"></ul>
+                </div>
+            </div>
+            <div class="calendarBox" id="calendarBox">
+                <div class="wrapper">
+                <header>
+                    <p class="current-date">December 2023</p>
+                    <div class="icons">
+                        <span class="material-symbols-rounded">chevron_left</span>
+                        <span class="material-symbols-rounded">chevron_right</span>
                     </div>
-                </div>
-           </div>
-        </div>
-        <div class="motivation" id="motivation">
-            <div id="catContainer">
-                <img src="" id="catImage" alt="Random Cat">
-                <p id="motivationalMessage"></p>
-            </div>
-        </div>
-        <div id="today" class="today">
-            <div class ="date" id="date"></div>
-            <div class="event-details">
-                <h2>Events</h2>
-                <ul id="eventList"></ul>
-            </div>
-        </div>
-        <div class="calendarBox" id="calendarBox">
-            <div class="wrapper">
-            <header>
-                <p class="current-date">December 2023</p>
-                <div class="icons">
-                    <span class="material-symbols-rounded">chevron_left</span>
-                    <span class="material-symbols-rounded">chevron_right</span>
-                </div>
-            </header>
+                </header>
 
-            <div class="calendar">
-                <ul class="weeks">
-                    <li>Sun</li>
-                    <li>Mon</li>
-                    <li>Tue</li>
-                    <li>Wen</li>
-                    <li>Thu</li>
-                    <li>Fri</li>
-                    <li>Sat</li>
-                </ul>
-                <ul class="days"></ul>
+                <div class="calendar">
+                    <ul class="weeks">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wen</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                    </ul>
+                    <ul class="days"></ul>
+                </div>
+                <form id="eventForm" class="event-form">
+                    <h3>Add Event</h3>
+                    <input type="text" id="summary" placeholder="Event Title" required>
+                    <input type="text" id="location" placeholder="Location">
+                    <textarea id="description" placeholder="Description"></textarea>
+                    <input type="datetime-local" id="startDateTime" placeholder="Start Date & Time" required>
+                    <input type="datetime-local" id="endDateTime" placeholder="End Date & Time" required>
+                    <button type="submit">Add Event</button>
+                </form>
             </div>
-            <form id="eventForm" class="event-form">
-                <h3>Add Event</h3>
-                <input type="text" id="summary" placeholder="Event Title" required>
-                <input type="text" id="location" placeholder="Location">
-                <textarea id="description" placeholder="Description"></textarea>
-                <input type="datetime-local" id="startDateTime" placeholder="Start Date & Time" required>
-                <input type="datetime-local" id="endDateTime" placeholder="End Date & Time" required>
-                <button type="submit">Add Event</button>
-            </form>
-            
-        </div>
-        </div>
-        <div class="checklist" id="checklist">
+            </div>
+            <div class="checklist" id="checklist">
         </div>
         
     </div>
         
-        <script>
+    <script>
         
         
         //Lightmode
@@ -458,6 +476,45 @@
             }
         }
         //Weather div
+        function toggleWeather() {
+            var weatherSection = document.getElementById("weather");
+            var motivationSection = document.getElementById("motivation");
+
+            if (weatherSection.clientWidth === 0 && motivationSection.clientWidth === 0) {
+                weatherSection.style.padding = '20px';
+                weatherSection.style.width = "19%";
+                weatherSection.style.transition = 'width 0.5s ease'; // Add a transition effect for width change
+                weatherSection.style.top = '10%';
+                console.log("5");
+            } else if (weatherSection.clientWidth === 0 && motivationSection.clientWidth !== 0) {
+                weatherSection.style.padding = '20px';
+                weatherSection.style.width = "19%";
+                weatherSection.style.top = '50%';
+                weatherSection.style.transition = 'width 0.5s ease'; // Add a transition effect for top change
+                console.log("6");
+            } else if(weatherSection.clientWidth !== 0 && motivationSection.clientWidth === 0){
+                weatherSection.style.padding = '0px';
+                weatherSection.style.width = "0";
+                weatherSection.style.top = "10%";
+                weatherSection.style.transition = 'width 0.5s ease'; // Add a transition effect for top change
+                console.log("7");
+            }else if(weatherSection.clientTop < motivationSection.clientTop){ //This is when weather is above
+                weatherSection.style.padding = '0px';
+                weatherSection.style.width = "0";
+                weatherSection.style.transition = 'width 0.5s ease'; // Add a transition effect for top change
+                motivationSection.style.top = '10%';
+                motivationSection.style.transition = 'top 1s ease'; // Add a transition effect for top change
+                console.log("8");
+            }else{
+                weatherSection.style.padding = '0px';
+                weatherSection.style.width = "0";
+                weatherSection.style.top = "10%";
+                weatherSection.style.transition = 'width 0.5s ease'; // Add a transition effect for top change
+                motivationSection.style.top = '10%';
+                console.log("9");
+            }
+        }
+
         const apiKey = "2cc9622df0a80bdc58d8d406b90093bf";
         const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
         const searchBox = document.querySelector(".search input");
@@ -512,6 +569,47 @@
             checkWeather(searchBox.value);
         });
         //Cat motivation
+        function toggleCat() {
+            var catSection = document.getElementById("motivation");
+            var weatherSection = document.getElementById("weather")
+            if (catSection.clientWidth === 0 && weatherSection.clientWidth === 0) {
+                catSection.style.padding = '10px';
+                catSection.style.width = "19%";
+                catSection.style.border = '2px solid #ff990062';
+                catSection.style.top = '10%';
+                console.log("1");
+            }else if(catSection.clientWidth === 0 && weatherSection.clientWidth !== 0){
+                catSection.style.padding = '10px';
+                catSection.style.width = "19%";
+                catSection.style.border = '2px solid #ff990062';
+                catSection.style.top = '60%';
+                weatherSection.style.transition = 'top 0.0s ease'; // Add transition effect for top change
+                console.log("2");
+            }else if(catSection.clientWidth !== 0 && weatherSection.clientWidth === 0){
+                catSection.style.padding = '0px';
+                catSection.style.width = "0";
+                catSection.style.border = '0px solid #ff990062';
+                catSection.style.transition = 'width 0.5s ease';
+                catSection.style.top = '10%';
+                weatherSection.style.top = '10%';
+                console.log("3.3");
+            }else if(weatherSection.clientTop < catSection.clientTop){
+                catSection.style.padding = '0px';
+                catSection.style.width = "0";
+                catSection.style.border = '0px solid #ff990062';
+                catSection.style.transition = 'width 0.5s ease';
+                weatherSection.style.top = '10%'; // Adjust the top position of weather when cat is toggled
+                weatherSection.style.transition = 'top 0.5s ease'; // Add transition effect for top change
+                console.log("3");
+            }else{
+                catSection.style.padding = '0px';
+                catSection.style.width = "0";
+                catSection.style.top = '10%';
+                catSection.style.border = '0px solid #ff990062';
+                console.log("4");
+            }
+        }
+        
         async function fetchMotivationalData() {
             const catApiUrl = 'https://api.thecatapi.com/v1/images/search';
             const response = await fetch(catApiUrl);
