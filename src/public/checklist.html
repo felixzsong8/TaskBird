@@ -355,6 +355,9 @@ button:hover {
             newTask.dataset.urgency = urgency;
             newTask.dataset.duration = duration
 
+            document.getElementById('taskName').value = ''
+            document.getElementById('duration').value = ''
+
             let tasks = Array.from(checklistWrapper.getElementsByClassName('task'));
             let insertIndex = tasks.findIndex(task => parseInt(task.dataset.urgency) <= urgency);
 
