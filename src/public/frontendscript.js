@@ -56,6 +56,26 @@ const renderCalendar = async () => {
     dayElements.forEach((dayElement) => {
         dayElement.addEventListener('click', handleDayClick);
     });
+    const clickedDay = date.getDate();
+    const formattedDate = `${currYear}-${(currMonth + 1).toString().padStart(2, '0')}-${clickedDay.toString().padStart(2, '0')}`;
+
+    fetchEventsForDay(currYear, currMonth, clickedDay).then(events => {
+        const eventList = document.getElementById('eventList');
+        eventList.innerHTML = '';
+
+        events.forEach(event => {
+            const li = document.createElement('li');
+            li.textContent = `${event.summary} - ${new Date(event.start.dateTime).toLocaleTimeString()} to ${new Date(event.end.dateTime).toLocaleTimeString()}`;
+            
+            const deleteButton = createDeleteButton(event.id);
+            li.appendChild(deleteButton);
+            
+            // Append the list item to the event list
+            eventList.appendChild(li);
+        });
+    }).catch(error => {
+        console.error('Error fetching events for day:', error);
+    });
 };
 
 function handleDayClick(event) {
