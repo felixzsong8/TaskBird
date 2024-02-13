@@ -30,7 +30,7 @@ const renderCalendar = async () => {
     const lastDayOfMonth = new Date(currYear, currMonth, lastDateOfMonth).getDay();
     const lastDateOfLastMonth = new Date(currYear, currMonth, 0).getDate();
     let liTag = "";
-
+    console.log(date.getDate())
     const eventDates = await fetchEventsForMonth(currYear, currMonth);
 
     for (let i = firstDayOfMonth; i > 0; i--) {
